@@ -1,0 +1,291 @@
+{
+  "report_title": "AI行业情报",
+  "report_date": "2026-04-05",
+  "time_window_hours": 48,
+  "generated_at": "2026-04-05T12:00:00.000Z",
+  "groups": [
+    {
+      "category": "AI Agent",
+      "summary": "GitHub 在 SDK、开发者平台、Agent 能力 上出现新的可追踪变化。",
+      "items": [
+        {
+          "title": "GitHub Copilot SDK 公开预览",
+          "published_at": "2026-04-03",
+          "source_name": "GitHub Changelog",
+          "source_url": "https://github.blog/changelog/2026-04-03-copilot-sdk-public-preview/",
+          "subject": "GitHub",
+          "classification": "AI Agent",
+          "event_summary": "GitHub Copilot SDK 现已公开预览，允许开发者将 Copilot 的 agentic 能力嵌入自己的应用、工作流和平台服务。",
+          "why_it_matters": "开发者可以在自己的产品中集成 Copilot 的 AI 能力，扩展 GitHub Copilot 生态系统。",
+          "confidence": "high",
+          "related_focus": [
+            "SDK",
+            "开发者平台",
+            "Agent 能力"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "SDK 提供构建块用于嵌入 Copilot 功能。",
+          "source_tier": "tier1",
+          "supporting_sources": []
+        }
+      ]
+    },
+    {
+      "category": "AI Coding",
+      "summary": "Anthropic、GitHub、OpenAI 在 安全事件、代码泄露、Claude Code 上出现新的可追踪变化。",
+      "items": [
+        {
+          "title": "Anthropic Claude Code 源代码泄露",
+          "published_at": "2026-04-02",
+          "source_name": "Multiple Tech Media",
+          "source_url": "https://vpssos.com/ai-model-news-today/",
+          "subject": "Anthropic",
+          "classification": "AI Coding",
+          "event_summary": "Anthropic 的 Claude Code 产品发生源代码泄露事件，涉及内部源代码、未发布功能和产品实现细节。Anthropic 确认是打包/发布流程错误而非黑客攻击，无客户数据或凭证泄露。",
+          "why_it_matters": "泄露暴露了 Anthropic 如何将语言模型转化为可用开发者产品的系统设计，包括工作流编排、内存、开发者体验等。战略影响大于技术影响。",
+          "confidence": "high",
+          "related_focus": [
+            "安全事件",
+            "代码泄露",
+            "Claude Code"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "核心模型权重未暴露，但产品层周边系统设计被外界分析。",
+          "source_tier": "tier2",
+          "supporting_sources": []
+        },
+        {
+          "title": "Anthropic 禁止 Claude 订阅用于第三方工具如 OpenClaw",
+          "published_at": "2026-04-04",
+          "source_name": "TechCrunch / VentureBeat",
+          "source_url": "https://techcrunch.com/2026/04/04/anthropic-says-claude-code-subscribers-will-need-to-pay-extra-for-openclaw-support/",
+          "subject": "Anthropic",
+          "classification": "AI Coding",
+          "event_summary": "Anthropic 宣布从 2026-04-04 起，Claude Pro 和 Max 订阅者不能再将订阅用于第三方 AI agent 框架（如 OpenClaw）。用户需转为按量付费或 API 使用。",
+          "why_it_matters": "数千名开发者受影响，一些用户的成本可能增加 50 倍。OpenClaw 创始人 Peter Steinberger（已加入 OpenAI）称与 Anthropic 谈判仅争取到一周延期。",
+          "confidence": "high",
+          "related_focus": [
+            "政策变更",
+            "第三方工具",
+            "开发者生态"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "Boris Cherny（Claude Code 负责人）表示这是工程约束而非反开源。OpenClaw 创始人称 Anthropic 先复制热门功能到封闭工具，再锁定开源。",
+          "source_tier": "tier1",
+          "supporting_sources": []
+        },
+        {
+          "title": "Claude Code v2.1.91/92 发布",
+          "published_at": "2026-04-04",
+          "source_name": "Anthropic Release Notes",
+          "source_url": "https://releasebot.io/updates/anthropic/claude-code",
+          "subject": "Anthropic",
+          "classification": "AI Coding",
+          "event_summary": "Claude Code 发布 v2.1.91 和 v2.1.92 版本，新增 MCP 结果持久化、多行深度链接支持、插件可打包可执行文件等。性能优化包括更快的 stripAnsi 和 SSE 传输。",
+          "why_it_matters": "MCP 工具结果持久化允许更大结果（如 DB schema）通过而不被截断。插件系统增强允许在 bin/ 目录下发布可执行文件。",
+          "confidence": "high",
+          "related_focus": [
+            "产品更新",
+            "Claude Code",
+            "开发者工具"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "v2.1.91 新增 /powerup 交互式教程；修复多个远程会话和 Windows 问题。",
+          "source_tier": "tier1",
+          "supporting_sources": []
+        },
+        {
+          "title": "GitHub Copilot 数据政策变更",
+          "published_at": "2026-04-03",
+          "source_name": "The Decoder / GitHub Blog",
+          "source_url": "https://github.blog/changelog/2026-04-03-copilot-data-policy-update/",
+          "subject": "GitHub",
+          "classification": "AI Coding",
+          "event_summary": "GitHub 宣布从 2026-04-24 起，Free、Pro 和 Pro+ 用户的 Copilot 交互数据（提示、输出、代码片段、文件名、仓库结构、反馈）将用于训练 AI 模型，除非用户主动退出。",
+          "why_it_matters": "Business 和 Enterprise 客户不受影响。用户可在 Copilot 设置的\"Privacy\"下选择退出。GitHub 称真实使用数据可改善模型，已与 Microsoft 共享但不再与第三方模型提供商共享。",
+          "confidence": "high",
+          "related_focus": [
+            "隐私政策",
+            "数据使用",
+            "模型训练"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "此前已选择退出的用户保持原有设置。",
+          "source_tier": "tier1",
+          "supporting_sources": []
+        },
+        {
+          "title": "OpenAI Codex Mac 应用首周下载量突破 100 万",
+          "published_at": "2026-04-02",
+          "source_name": "Publicancy / Sam Altman Twitter",
+          "source_url": "https://publicancy.com/openai-ceo-sam-altman-confirmed-must-read-update-2026/",
+          "subject": "OpenAI",
+          "classification": "AI Coding",
+          "event_summary": "Sam Altman 确认 OpenAI Codex Mac 应用在发布首周下载量突破 100 万次。这一里程碑让人联想到 ChatGPT 2022 年的破纪录首次亮相。",
+          "why_it_matters": "显示出对 AI 辅助开发工具的强烈需求。发布后每周用户增长 60%，给 OpenAI 系统带来压力，可能导致免费层用户面临使用限制。",
+          "confidence": "medium",
+          "related_focus": [
+            "产品发布",
+            "Codex",
+            "开发者工具"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "编程训练营报告学生越来越多地依赖 Codex 进行调试。",
+          "source_tier": "tier2",
+          "supporting_sources": []
+        }
+      ]
+    },
+    {
+      "category": "头部 AI 企业",
+      "summary": "OpenAI、xAI 在 并购、媒体、传播策略 上出现新的可追踪变化。",
+      "items": [
+        {
+          "title": "OpenAI 收购 TBPN 商业播客节目",
+          "published_at": "2026-04-02",
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/04/02/openai-acquires-tbpn-the-buzzy-founder-led-business-talk-show/",
+          "subject": "OpenAI",
+          "classification": "头部 AI 企业",
+          "event_summary": "OpenAI 以数亿美元收购 TBPN（Technology Business Programming Network），这是一档由 John Coogan 和 Jordi Hays 主持的每日科技商业播客节目。收购由 OpenAI 应用 CEO Fidji Simo 推动。",
+          "why_it_matters": "OpenAI 获得大规模营销传播渠道，有助于改善其公共形象并与迪士尼等媒体巨头建立合作关系。TBPN 将保持编辑独立性。",
+          "confidence": "high",
+          "related_focus": [
+            "并购",
+            "媒体",
+            "传播策略"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "收购金额在\"数亿美元\"级别。Sam Altman 表示向迪士尼 CEO 告知 Sora 关闭决定时感到\"糟糕\"。",
+          "source_tier": "tier1",
+          "supporting_sources": []
+        },
+        {
+          "title": "OpenAI 完成 1220 亿美元融资",
+          "published_at": "2026-04-02",
+          "source_name": "OpenAI News",
+          "source_url": "https://openai.com/news/",
+          "subject": "OpenAI",
+          "classification": "头部 AI 企业",
+          "event_summary": "OpenAI 宣布完成 1220 亿美元融资，估值达到 8520 亿美元。主要投资方包括 Amazon（500亿美元）、Nvidia（300亿美元）、Softbank（300亿美元）。",
+          "why_it_matters": "这是有史以来最大的 AI 融资之一，为 OpenAI 建设 AI 基础设施（包括与 AWS 的 1000 亿美元协议）提供资金。公司计划 Q4 2026 或 2027 年进行 IPO。",
+          "confidence": "high",
+          "related_focus": [
+            "融资",
+            "估值",
+            "IPO",
+            "基础设施"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "OpenAI 年化收入已达 250 亿美元，月营收 20 亿美元。",
+          "source_tier": "tier1",
+          "supporting_sources": []
+        },
+        {
+          "title": "OpenAI 宣布关闭 Sora 视频生成平台",
+          "published_at": "2026-04-02",
+          "source_name": "OpenAI Help Center / The Decoder",
+          "source_url": "https://openai.com/help/sora-discontinuation",
+          "subject": "OpenAI",
+          "classification": "头部 AI 企业",
+          "event_summary": "OpenAI 宣布将分两个阶段关闭 Sora 视频生成平台：网页版和应用版将于 2026-04-26 关闭，API 将于 2026-09-24 关闭。用户数据将被永久删除。",
+          "why_it_matters": "战略转向编码工具和企业客户，与 Anthropic 策略类似。计划将 ChatGPT 和其他工具整合为单一\"超级应用\"。Sora 将作为世界模型研究项目继续存在。",
+          "confidence": "high",
+          "related_focus": [
+            "产品关闭",
+            "战略转向",
+            "资源重新分配"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "Sam Altman 表示向迪士尼 CEO Josh D'Amaro 告知此决定时感到\"糟糕\"。",
+          "source_tier": "tier1",
+          "supporting_sources": []
+        },
+        {
+          "title": "xAI 发布 Grok 4.1",
+          "published_at": "2026-04-05",
+          "source_name": "Juejin / xAI",
+          "source_url": "https://juejin.cn/post/7624746314375266344",
+          "subject": "xAI",
+          "classification": "头部 AI 企业",
+          "event_summary": "xAI 发布 Grok 4.1，核心升级包括 256K 上下文窗口（从 128K 扩展）、原生实时网络检索能力、代码生成和数学推理性能大幅提升。推出 Grok 4.1 Mini 走性价比路线。",
+          "why_it_matters": "SWE-Bench 得分从 Grok 4.0 的 38.2% 提升到 51.7%。原生实时检索是差异化杀手级特性，SimpleQA 事实准确性得分 52.3% 领先所有模型。",
+          "confidence": "medium",
+          "related_focus": [
+            "模型发布",
+            "Grok",
+            "实时检索"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "MMLU-Pro 89.3%，HumanEval 93.2%，MATH-500 96.1%。",
+          "source_tier": "tier2",
+          "supporting_sources": []
+        }
+      ]
+    },
+    {
+      "category": "AI 领袖人物",
+      "summary": "Sam Altman 在 AI 预测、研究前沿、AGI 上出现新的可追踪变化。",
+      "items": [
+        {
+          "title": "Sam Altman 发布\"The Gentle Singularity\"文章",
+          "published_at": "2026-04-02",
+          "source_name": "OpenAI Blog / Media",
+          "source_url": "https://openai.com/blog/the-gentle-singularity",
+          "subject": "Sam Altman",
+          "classification": "AI 领袖人物",
+          "event_summary": "Sam Altman 发布题为\"The Gentle Singularity\"的文章，预测到 2026 年我们将看到能够\"发现新颖洞见\"的 AI 系统。Greg Brockman 称新的 o3 和 o4-mini 推理模型已经能激发真正的新概念。",
+          "why_it_matters": "OpenAI 可能加速开发能够产生开创性发现的 AI。竞争对手 Google（AlphaEvolve）、FutureHouse、Anthropic 也在追求类似目标，瞄准药物发现和材料科学的突破。",
+          "confidence": "high",
+          "related_focus": [
+            "AI 预测",
+            "研究前沿",
+            "AGI"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "Altman 预测 AGI 将在\"几年内\"到来，OpenAI 内部对 AGI 的定义已悄然提高。",
+          "source_tier": "tier1",
+          "supporting_sources": []
+        }
+      ]
+    },
+    {
+      "category": "模型与基础设施",
+      "summary": "Google 在 模型发布、语音 AI、生态系统 上出现新的可追踪变化。",
+      "items": [
+        {
+          "title": "Google Gemini 3.1 Flash Live 发布",
+          "published_at": "2026-04-02",
+          "source_name": "Google AI Blog / Android Central",
+          "source_url": "https://blog.google/technology/ai/gemini-3-1-flash-live",
+          "subject": "Google",
+          "classification": "模型与基础设施",
+          "event_summary": "Google 发布 Gemini 3.1 Flash Live，定位为最先进的语音优先 AI 模型，强调\"速度和自然节奏\"，实现更无缝的语音交互。新增从 ChatGPT 和 Claude 导入聊天记录的工具。",
+          "why_it_matters": "Google 正将 Gemini 更深入地集成到产品生态系统中，竞争焦点从模型性能转向生态粘性、记忆、工作流连续性和跨产品集成。",
+          "confidence": "high",
+          "related_focus": [
+            "模型发布",
+            "语音 AI",
+            "生态系统"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "支持 ChatGPT、Claude 聊天记录导入以降低用户切换成本。",
+          "source_tier": "tier1",
+          "supporting_sources": []
+        }
+      ]
+    }
+  ]
+}

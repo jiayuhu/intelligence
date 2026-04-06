@@ -1,0 +1,140 @@
+{
+  "report_title": "AI行业情报",
+  "report_date": "2026-04-05",
+  "time_window_hours": 48,
+  "generated_at": "2026-04-05T12:00:00Z",
+  "groups": [
+    {
+      "category": "AI Agent",
+      "summary": "GitHub 在 Copilot cloud agent 上同时上线 runner controls、organization firewall、signed commits 与 Copilot SDK，社区热帖强调企业级治理。",
+      "items": [
+        {
+          "title": "GitHub Copilot cloud agent 组织级治理",
+          "published_at": "2026-04-03T08:00:00Z",
+          "source_name": "GitHub Changelog",
+          "source_url": "https://github.blog/changelog/2026-04-03-organization-firewall-settings-for-copilot-cloud-agent",
+          "subject": "GitHub 组织管理员",
+          "classification": "AI Agent",
+          "event_summary": "organization-level runner controls + firewall controls enforce network/access policies for Copilot cloud agent.",
+          "why_it_matters": "Enterprise governance is now guaranteed by product defaults, easing compliance.",
+          "confidence": "high",
+          "related_focus": [
+            "governance",
+            "agentic workflow"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "Hacker News discussion highlights reduction in unauthorized runs.",
+          "source_tier": "P0"
+        },
+        {
+          "title": "Copilot cloud agent signed commits",
+          "published_at": "2026-04-03T08:00:00Z",
+          "source_name": "GitHub Changelog",
+          "source_url": "https://github.blog/changelog/2026-04-03-signed-commits-for-copilot-cloud-agent",
+          "subject": "Copilot cloud agent",
+          "classification": "AI Agent",
+          "event_summary": "Agent outputs now automatically sign commits, linking to compliance logs.",
+          "why_it_matters": "Allows automated output to enter existing audit workflows.",
+          "confidence": "high",
+          "related_focus": [
+            "compliance",
+            "governance"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "Reddit thread called this the missing link for enterprise adoption.",
+          "source_tier": "P0"
+        }
+      ]
+    },
+    {
+      "category": "AI Coding",
+      "summary": "Copilot SDK public preview packages runtime/tooling/permissions; community commentary frames it as an enterprise foundation.",
+      "items": [
+        {
+          "title": "Copilot SDK public preview",
+          "published_at": "2026-04-02T07:00:00Z",
+          "source_name": "GitHub Changelog",
+          "source_url": "https://github.blog/changelog/2026-04-02-copilot-sdk-public-preview",
+          "subject": "GitHub Copilot SDK",
+          "classification": "AI Coding",
+          "event_summary": "Public preview adds streaming, BYOK, tool integrations, telemetry interfaces.",
+          "why_it_matters": "Turns AI coding into embeddable infrastructure.",
+          "confidence": "high",
+          "related_focus": [
+            "runtime",
+            "tooling"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "TechCrunch article highlights enterprise packaging.",
+          "source_tier": "P0"
+        },
+        {
+          "title": "GPT-5.4 mini enters Copilot Student",
+          "published_at": "2026-04-01T08:00:00Z",
+          "source_name": "GitHub Changelog",
+          "source_url": "https://github.blog/changelog/month/04-2026/",
+          "subject": "GitHub Copilot",
+          "classification": "AI Coding",
+          "event_summary": "GitHub depreciates GPT-5.1 Codex series and routes Copilot Student to GPT-5.4 mini.",
+          "why_it_matters": "Model lifecycle managed by platform, raising migration work for developers.",
+          "confidence": "medium",
+          "related_focus": [
+            "model migration",
+            "platform governance"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "Reddit thread worries about compatibility testing load.",
+          "source_tier": "P0"
+        }
+      ]
+    },
+    {
+      "category": "Headliners",
+      "summary": "OpenAI and Sam Altman narrative pushes governance/budget urgency, while community notes UI changes for GPT-5.3 routing.",
+      "items": [
+        {
+          "title": "OpenAI Help Center updates GPT-5.3 defaults",
+          "published_at": "2026-04-05T09:00:00Z",
+          "source_name": "OpenAI Help Center",
+          "source_url": "https://help.openai.com/en/articles/11909943-gpt-53-and-5-2-in-chatgpt",
+          "subject": "OpenAI",
+          "classification": "Headliners",
+          "event_summary": "Reframes GPT-5.3 as default, with GPT-5.2 Thinking as auto routing for deeper tasks.",
+          "why_it_matters": "Model experience now determined by routing logic rather than manual selection.",
+          "confidence": "high",
+          "related_focus": [
+            "model routing",
+            "experience"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "Reddit users observed UI tweaks aligning with doc updates.",
+          "source_tier": "P0"
+        },
+        {
+          "title": "Sam Altman pushes governance + action timeline",
+          "published_at": "2026-04-05T07:00:00Z",
+          "source_name": "Axios C-Suite",
+          "source_url": "https://www.axios.com/2026/04/04/sam-altman-open-ai-ai-adoption-advice-ceos",
+          "subject": "Sam Altman",
+          "classification": "Headliners",
+          "event_summary": "Advocates CEOs make AI decisions in 6-12 months, adding governance and budget to the message.",
+          "why_it_matters": "Signals AI adoption steps are moving into core operating agendas.",
+          "confidence": "medium",
+          "related_focus": [
+            "governance",
+            "leader signal"
+          ],
+          "within_48h": true,
+          "status": "confirmed",
+          "notes": "Lex Fridman podcast echoes similar governance themes (see show notes).",
+          "source_tier": "P2"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "report_title": "AI行业情报",
+  "report_date": "2026-04-05",
+  "time_window_hours": 48,
+  "email_subject": "【AI行业情报】日报 · 2026-04-05",
+  "opening": "本期邮件只保留对管理层最有影响的三条变化，并补入了社区讨论与节目文字稿作为辅助信号。完整证据链、来源附录和详细分析见 PDF 附件。",
+  "highlights": [
+    {
+      "title": "默认模型与自动路由正在前台化",
+      "evidence": "OpenAI 把 GPT-5.3 设为默认模型，并把 GPT-5.2 Thinking 放入更深推理路径，用户体验开始由平台路由统一调度。",
+      "decision_implication": "管理层需要要求产品、研发和客户成功团队同步更新模型变更告知、回归测试和客户预期管理。"
+    },
+    {
+      "title": "AI Coding 平台正在强化治理控制面",
+      "evidence": "GitHub 在同一窗口内连续发布签名提交、firewall、runner controls 和模型退役说明，治理能力已进入产品默认能力集。",
+      "decision_implication": "管理层应把治理能力列入采购与平台选型标准，而不是只比较生成效果。"
+    },
+    {
+      "title": "AI 采用正在进入管理层经营议程",
+      "evidence": "Axios 的 CEO 采访与节目文字稿都显示，领袖人物已把 AI 采用节奏、治理和社会信任放到同一讨论框架。",
+      "decision_implication": "管理层需要把 AI 采用从技术试点提升到经营议程，尽快明确预算、责任归属和治理节奏。"
+    }
+  ],
+  "closing": "完整分析、来源附录、社区讨论链接和节目文字稿索引已随信附上。"
+}

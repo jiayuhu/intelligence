@@ -1,0 +1,79 @@
+name: Daily AI Intelligence Report
+
+on:
+  schedule:
+    # 每天北京时间 09:00 (UTC 01:00)
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+    inputs:
+      use_google_api:
+        description: 'Use Google Search API (true) or manual search results (false)'
+        required: false
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+jobs:
+  generate-and-send:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Fetch intelligence
+        env:
+          GOOGLE_SEARCH_API_KEY: ${{ secrets.GOOGLE_SEARCH_API_KEY }}
+          GOOGLE_SEARCH_ENGINE_ID: ${{ secrets.GOOGLE_SEARCH_ENGINE_ID }}
+        run: |
+          if [ "${{ github.event.inputs.use_google_api }}" = "false" ]; then
+            echo "Skipping fetch - expecting manual search-results.json"
+          else
+            npm run fetch:google
+          fi
+        
+      - name: Generate all reports
+        run: npm run generate:all
+        
+      - name: Send email
+        env:
+          AI_INDUSTRY_AGENTMAIL_API_KEY: ${{ secrets.AGENTMAIL_API_KEY }}
+          AI_INDUSTRY_AGENTMAIL_INBOX_ID: ${{ secrets.AGENTMAIL_INBOX_ID }}
+          AI_INDUSTRY_AGENTMAIL_BASE_URL: ${{ secrets.AGENTMAIL_BASE_URL }}
+          AI_INDUSTRY_EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          AI_INDUSTRY_EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+        run: npm run send:email
+        
+      - name: Upload report artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: intelligence-report-${{ github.run_date }}
+          retention-days: 30
+          path: |
+            outputs/md/*.md
+            outputs/pdf/*.pdf
+            outputs/email/*.eml
+            
+      - name: Commit source logs
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add prompts/ai-industry/source-logs/
+          git diff --quiet && git diff --staged --quiet || git commit -m "Daily intelligence update $(date +%Y-%m-%d)"
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

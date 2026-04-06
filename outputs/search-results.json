@@ -1,0 +1,98 @@
+[
+  {
+    "title": "OpenAI 以数亿美元收购 TBPN 商业播客节目",
+    "url": "https://fortune.com/2026/04/04/openai-tbpn-acquisition-marketing-communications-pr-live-video-smart-move/",
+    "date": "2026-04-04",
+    "summary": "OpenAI 收购 TBPN（Technology Business Programming Network），这是一档由 John Coogan 和 Jordi Hays 主持的每日科技商业播客节目。收购价格为数亿美元，由 OpenAI 应用 CEO Fidji Simo 推动。此举为 OpenAI 提供大规模营销传播渠道，有助于改善其公共形象。",
+    "source": "Fortune",
+    "queryId": 1
+  },
+  {
+    "title": "OpenAI 完成 1220 亿美元融资 估值达 8520 亿",
+    "url": "https://openai.com/news/",
+    "date": "2026-04-02",
+    "summary": "OpenAI 宣布完成 1220 亿美元融资，估值达到 8520 亿美元。主要投资方包括 Amazon（500亿美元）、Nvidia（300亿美元）、Softbank（300亿美元）。公司计划 Q4 2026 或 2027 年进行 IPO。",
+    "source": "OpenAI News",
+    "queryId": 1
+  },
+  {
+    "title": "OpenAI 宣布关闭 Sora 视频生成平台",
+    "url": "https://the-decoder.com/openai-sets-two-stage-sora-shutdown-with-app-closing-april-2026-and-api-following-in-september/",
+    "date": "2026-03-28",
+    "summary": "OpenAI 宣布将分两个阶段关闭 Sora 视频生成平台。网页版和应用版将于 2026-04-26 关闭，API 将于 2026-09-24 关闭。战略转向编码工具和企业客户，计划将 ChatGPT 整合为单一超级应用。",
+    "source": "The Decoder",
+    "queryId": 1
+  },
+  {
+    "title": "Anthropic 禁止 Claude 订阅用于第三方工具如 OpenClaw",
+    "url": "https://techcrunch.com/2026/04/04/anthropic-says-claude-code-subscribers-will-need-to-pay-extra-for-openclaw-support/",
+    "date": "2026-04-04",
+    "summary": "Anthropic 宣布从 2026-04-04 起，Claude Pro 和 Max 订阅者不能再将订阅用于第三方 AI agent 框架（如 OpenClaw）。用户需转为按量付费或 API 使用。数千名开发者受影响，一些用户成本可能增加 50 倍。",
+    "source": "TechCrunch",
+    "queryId": 2
+  },
+  {
+    "title": "Claude Code v2.1.91 发布 新增 MCP 结果持久化",
+    "url": "https://releasebot.io/updates/anthropic/claude-code",
+    "date": "2026-04-04",
+    "summary": "Claude Code 发布 v2.1.91 版本，新增 MCP 结果持久化（支持 500K 字符）、多行深度链接支持、插件可打包可执行文件等功能。性能优化包括更快的 stripAnsi 和 SSE 传输。",
+    "source": "Anthropic Release Notes",
+    "queryId": 2
+  },
+  {
+    "title": "Anthropic Claude Code 源代码泄露事件",
+    "url": "https://vpssos.com/ai-model-news-today/",
+    "date": "2026-04-02",
+    "summary": "Anthropic 的 Claude Code 产品发生源代码泄露，涉及内部源代码、未发布功能和产品实现细节。Anthropic 确认是打包流程错误而非黑客攻击，无客户数据泄露。泄露暴露了产品层系统设计。",
+    "source": "VPSSOS",
+    "queryId": 2
+  },
+  {
+    "title": "Anthropic 禁止 Claude 用于 OpenClaw 引发开发者争议",
+    "url": "https://venturebeat.com/technology/anthropic-cuts-off-the-ability-to-use-claude-subscriptions-with-openclaw-and",
+    "date": "2026-04-05",
+    "summary": "Anthropic 禁止 Claude Pro/Max 订阅用于 OpenClaw 等第三方工具，引发开发者社区争议。OpenClaw 创始人称与 Anthropic 谈判仅争取到一周延期。用户现在需要支付额外费用使用第三方工具。",
+    "source": "VentureBeat",
+    "queryId": 2
+  },
+  {
+    "title": "GitHub Copilot SDK 公开预览",
+    "url": "https://github.blog/changelog/2026-04-03-copilot-sdk-public-preview/",
+    "date": "2026-04-03",
+    "summary": "GitHub Copilot SDK 现已公开预览，允许开发者将 Copilot 的 agentic 能力嵌入自己的应用、工作流和平台服务。开发者可以在自己的产品中集成 Copilot 的 AI 能力。",
+    "source": "GitHub Changelog",
+    "queryId": 3
+  },
+  {
+    "title": "GitHub Copilot 数据政策变更 4月24日生效",
+    "url": "https://github.blog/changelog/2026-04-03-copilot-data-policy-update/",
+    "date": "2026-04-03",
+    "summary": "GitHub 宣布从 2026-04-24 起，Free、Pro 和 Pro+ 用户的 Copilot 交互数据将用于训练 AI 模型，除非用户主动退出。Business 和 Enterprise 客户不受影响。",
+    "source": "GitHub Blog",
+    "queryId": 3
+  },
+  {
+    "title": "Google Gemini 3.1 Flash Live 发布 支持语音优先交互",
+    "url": "https://blog.google/technology/ai/gemini-3-1-flash-live",
+    "date": "2026-04-02",
+    "summary": "Google 发布 Gemini 3.1 Flash Live，定位为最先进的语音优先 AI 模型，强调速度和自然节奏。新增从 ChatGPT 和 Claude 导入聊天记录的工具，降低用户切换成本。",
+    "source": "Google AI Blog",
+    "queryId": 4
+  },
+  {
+    "title": "xAI 发布 Grok 4.1 支持 256K 上下文和实时检索",
+    "url": "https://juejin.cn/post/7624746314375266344",
+    "date": "2026-04-05",
+    "summary": "xAI 发布 Grok 4.1，核心升级包括 256K 上下文窗口、原生实时网络检索能力。SWE-Bench 得分从 38.2% 提升到 51.7%。SimpleQA 事实准确性得分 52.3% 领先所有模型。",
+    "source": "Juejin/xAI",
+    "queryId": 5
+  },
+  {
+    "title": "Sam Altman 发布 The Gentle Singularity 预测 AI 将产生新颖洞见",
+    "url": "https://openai.com/blog/the-gentle-singularity",
+    "date": "2026-04-02",
+    "summary": "Sam Altman 发布文章预测到 2026 年 AI 将能够发现新颖洞见。Greg Brockman 称 o3/o4-mini 推理模型已能激发真正的新概念。OpenAI 可能加速开发能产生开创性发现的 AI。",
+    "source": "OpenAI Blog",
+    "queryId": 6
+  }
+]

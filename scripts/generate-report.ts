@@ -1,36 +1,65 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import { intelTitles } from "../titles/intel-titles.js";
-import { buildIntelPrompt } from "../src/lib/prompt.js";
-import { renderTemplate } from "../src/lib/template.js";
+import { renderHtmlDocument } from "../src/lib/html.js";
+import { renderMarkdownReportHtml } from "../src/lib/markdown.js";
+import { aiIndustryTitles, getAiIndustryFileName } from "../titles/ai-industry.js";
+import {
+  getIntelOutputDirPath,
+  getIntelOutputPath,
+  getRepoRoot,
+  getReportDate,
+  getTemplatePath,
+} from "../src/lib/workflow-paths.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const repoRoot = path.resolve(__dirname, "..");
+const repoRoot = getRepoRoot(import.meta.url);
 
 async function main(): Promise<void> {
-  const title = intelTitles.industry;
-  const reportDate = new Date().toISOString().slice(0, 10);
-  const htmlTemplatePath = path.join(repoRoot, "templates", "report.html");
-  const outputDir = path.join(repoRoot, "outputs", "html");
-  const outputPath = path.join(outputDir, `${title.categoryKey}-${reportDate}.html`);
-  const promptTemplatePath = path.join(repoRoot, "prompts", "intel-prompt-template.md");
-  const htmlTemplate = await readFile(htmlTemplatePath, "utf8");
-  const promptTemplate = await readFile(promptTemplatePath, "utf8");
-  const prompt = buildIntelPrompt(title.categoryName, promptTemplate);
-  const html = renderTemplate(htmlTemplate, {
-    title: title.fileTitle,
-    categoryName: title.categoryName,
+  const reportDate = getReportDate();
+  const markdownPath = getIntelOutputPath({
+    repoRoot,
+    outputDirName: "md",
+    categoryKey: aiIndustryTitles.fileBaseName,
     reportDate,
-    content: prompt,
+    extension: "md",
+  });
+  const baseTemplatePath = getTemplatePath(repoRoot, "html-base.html");
+  const headerTemplatePath = getTemplatePath(repoRoot, "report-header.html");
+  const bodyTemplatePath = getTemplatePath(repoRoot, "report-body.html");
+  const outputDir = getIntelOutputDirPath({
+    repoRoot,
+    outputDirName: "html",
+  });
+  const outputPath = getIntelOutputPath({
+    repoRoot,
+    outputDirName: "html",
+    categoryKey: aiIndustryTitles.fileBaseName,
+    reportDate,
+    extension: "html",
+  });
+  const baseTemplate = await readFile(baseTemplatePath, "utf8");
+  const headerTemplate = await readFile(headerTemplatePath, "utf8");
+  const bodyTemplate = await readFile(bodyTemplatePath, "utf8");
+  const markdown = await readFile(markdownPath, "utf8");
+  const contentHtml = renderMarkdownReportHtml(markdown);
+  const html = renderHtmlDocument({
+    baseTemplate,
+    headerTemplate,
+    bodyTemplate,
+    values: {
+      title: aiIndustryTitles.reportTitle,
+      categoryName: aiIndustryTitles.reportTitle,
+      subtitle: aiIndustryTitles.reportSubtitle,
+      reportDate,
+      contentHtml,
+    },
   });
 
   await mkdir(outputDir, { recursive: true });
   await writeFile(outputPath, html, "utf8");
 
   console.log(`已生成 HTML 情报文件：${outputPath}`);
-  console.log(`建议使用提示词模板：${promptTemplatePath}`);
+  console.log(`来源 Markdown 文件：${markdownPath}`);
+  console.log(`使用母版：${baseTemplatePath}`);
+  console.log(`固定文件名：${getAiIndustryFileName({ reportDate, extension: "html" })}`);
 }
 
 main().catch((error: unknown) => {

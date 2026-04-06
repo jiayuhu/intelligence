@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI行业情报发送输出",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "report_title",
+    "report_date",
+    "time_window_hours",
+    "email_subject",
+    "opening",
+    "highlights",
+    "closing"
+  ],
+  "properties": {
+    "report_title": {
+      "type": "string",
+      "const": "AI行业情报"
+    },
+    "report_date": {
+      "type": "string",
+      "description": "报告日期，格式 YYYY-MM-DD"
+    },
+    "time_window_hours": {
+      "type": "integer",
+      "const": 48
+    },
+    "email_subject": {
+      "type": "string",
+      "description": "邮件标题，必须包含报告日期，不得临时拼接"
+    },
+    "opening": {
+      "type": "string",
+      "description": "邮件开场说明，1 段"
+    },
+    "highlights": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "evidence",
+          "decision_implication"
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "decision_implication": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "3-5 条结构化摘要，每条包含标题、依据和决策含义"
+    },
+    "closing": {
+      "type": "string",
+      "description": "收尾提示，提示查看随附的 PDF 报告"
+    }
+  }
+}

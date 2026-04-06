@@ -6,16 +6,38 @@
   "scripts": {
     "dev": "tsx scripts/generate-report.ts",
     "generate:prompt": "tsx scripts/generate-prompt.ts",
+    "generate:send-prompt": "tsx scripts/generate-send-prompt.ts",
+    "generate:fetch": "tsx scripts/generate-fetch.ts",
+    "generate:md": "tsx scripts/generate-md-v2.ts",
+    "generate:md-v1": "tsx scripts/generate-md.ts",
+    "generate:send-output": "tsx scripts/generate-send-output.ts",
     "generate:report": "tsx scripts/generate-report.ts",
     "export:pdf": "tsx scripts/export-pdf.ts",
-    "send:email": "tsx scripts/send-html-email.ts",
+    "render:email": "tsx scripts/send-html-email.ts",
+    "send:email": "tsx scripts/send-email.ts",
+    "validate:ai-industry-samples": "node scripts/validate-ai-industry-samples.js",
+    "generate:all": "npm run generate:prompt && npm run generate:send-prompt && npm run generate:fetch && npm run generate:md && npm run generate:send-output && npm run generate:report && npm run export:pdf && npm run render:email && npm run validate:ai-industry-samples && npm run send:email",
+    "fetch:realtime": "tsx scripts/fetch-realtime.ts",
+    "fetch:tasks": "tsx scripts/fetch-realtime.ts --tasks",
+    "fetch:google": "tsx scripts/fetch-google-api.ts",
+    "generate:auto": "npm run fetch:realtime && npm run generate:all",
+    "generate:auto:google": "npm run fetch:google && npm run generate:all",
+    "setup": "tsx scripts/setup-env.ts",
+    "demo:intel-engine": "tsx scripts/demo-intel-engine.ts",
     "build": "tsc -p tsconfig.json",
     "test": "tsc -p tsconfig.json --noEmit",
     "lint": "tsc -p tsconfig.json --noEmit"
   },
   "devDependencies": {
+    "@fontsource/noto-sans-sc": "^5.2.7",
     "@types/node": "^22.15.0",
+    "@types/pdfkit": "^0.17.5",
+    "pdfkit": "^0.17.2",
     "tsx": "^4.20.5",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@fontsource-variable/noto-sans-sc": "^5.2.10",
+    "playwright": "^1.59.1"
   }
 }

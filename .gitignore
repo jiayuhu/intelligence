@@ -1,6 +1,12 @@
 node_modules/
 dist/
+.env
+.env.local
+outputs/md/*.md
+outputs/prompts/*.md
 outputs/html/*.html
+outputs/email/*.html
+outputs/email/*.json
+outputs/email/*.eml
 outputs/pdf/*.pdf
 *.log
-
