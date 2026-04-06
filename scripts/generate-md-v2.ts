@@ -184,7 +184,6 @@ function buildExecutiveSummary(topItems: AssessedItem[]): string[] {
     "| 快速了解本期要点 | 本章执行摘要 | 2分钟 |",
     "| 按专栏浏览详情 | 第二章「核心动态」 | 10分钟 |",
     "| 数据分析和趋势 | 第三章「趋势洞察」 | 5分钟 |",
-    "| 获取行动建议 | 第四章「建议动作」 | 3分钟 |",
     "",
     "*本期专栏：AI Coding、AI 企业、AI 领袖人物等*",
     ""
@@ -759,42 +758,20 @@ function extractKeywords(allItems: AssessedItem[]): Array<{word: string; count: 
 }
 
 /**
- * 生成建议动作
- */
-function buildActionItems(): string[] {
-  return [
-    "## 四、建议动作",
-    "",
-    "### 4.1 高管层（CEO/CTO/VP）",
-    "- [ ] **评估 AI 治理预算**：基于 GitHub 和 OpenAI 的治理能力推进，评估现有预算是否充足（本周内）",
-    "- [ ] **模型生命周期管理**：将模型迁移和版本管理纳入正式技术 roadmap（Q2 完成规划）",
-    "",
-    "### 4.2 产品层（PM/PO）",
-    "- [ ] **用户调研**：设计问卷了解用户对企业级 AI 安全的需求（2周内）",
-    "- [ ] **竞品监控**：更新 GitHub Copilot 与其他竞品的治理能力对比（持续）",
-    "",
-    "### 4.3 技术层（工程师/架构师）",
-    "- [ ] **验证 Copilot 集成**：测试 firewall 设置对现有 CI/CD 流程的影响（3天内）",
-    "- [ ] **模型版本监控**：设置 OpenAI API 版本变更的自动告警（本周内）",
-    "",
-  ];
-}
-
-/**
  * 生成信息缺口
  */
 function buildInfoGaps(): string[] {
   return [
-    "## 五、信息缺口与追踪清单",
+    "## 四、信息缺口与追踪清单",
     "",
-    "### 5.1 待确认信息",
+    "### 4.1 待确认信息",
     "- 部分领袖人物观点来自二级来源（媒体报道），建议等待官方原话或演讲文字稿确认",
     "",
-    "### 5.2 缺失的重要视角",
+    "### 4.2 缺失的重要视角",
     "- **Anthropic**：本期无公开动态，但其在 AI 安全领域的声音通常具有风向标意义",
     "- **Google DeepMind**：研究进展未在本期出现，可能影响对技术前沿的判断",
     "",
-    "### 5.3 下期重点关注",
+    "### 4.3 下期重点关注",
     "1. GitHub Copilot firewall 功能的用户反馈（预计 1-2 周内出现）",
     "2. OpenAI 模型退役的开发者社区反应",
     "3. Anthropic 和 DeepMind 的最新动态",
@@ -860,12 +837,11 @@ async function main(): Promise<void> {
   console.log(`- 高价值情报（80分+）：${highValue.length} 条`);
   console.log(`- 平均价值分：${avgScore} 分`);
 
-  // 生成各章节（移除第二章价值评估，合并到第一章）
+  // 生成各章节（移除第二章价值评估，合并到第一章；移除建议动作）
   const lines: string[] = [
     ...buildExecutiveSummary(assessedItems),
     ...buildCoreDynamics(assessedItems),
     ...buildTrendInsights(assessedItems),
-    ...buildActionItems(),
     ...buildInfoGaps(),
     ...buildFooter(),
   ];

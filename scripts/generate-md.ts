@@ -166,16 +166,6 @@ function buildBusinessSection(): string[] {
   ];
 }
 
-function buildActionSection(): string[] {
-  return [
-    "## 五、建议动作",
-    `- ${polishChineseText("产品：把模型路由、工具权限、升级公告和回滚提示统一放到用户可见位置，减少因平台调度造成的预期落差。")}`,
-    `- ${polishChineseText("研发：为 AI Coding 与 Agent 工作流建立 48 小时级别的版本变更巡检和回归测试清单。")}`,
-    `- ${polishChineseText("平台/安全：优先盘点签名提交、runner、firewall、权限策略等治理能力是否已经覆盖到内部主要场景。")}`,
-    `- ${polishChineseText("研究：下一窗口继续补抓 Anthropic、DeepMind、Reddit、Hacker News 与播客节目页，把社区和领袖信号补进正式证据链。")}`,
-  ];
-}
-
 function buildSourceAppendix(fetchResult: AiIndustryFetchResult): string[] {
   const rows = fetchResult.groups
     .flatMap((group) => group.items)
@@ -186,7 +176,7 @@ function buildSourceAppendix(fetchResult: AiIndustryFetchResult): string[] {
     });
 
   return [
-    "## 六、来源附录",
+    "## 五、来源附录",
     "| 结论 | 原始链接 | 补充信号 | 证据等级 | 发布时间 |",
     "| --- | --- | --- | --- | --- |",
     ...rows,
@@ -267,8 +257,6 @@ async function main(): Promise<void> {
     ...buildTrendSection(fetchResult),
     "",
     ...buildBusinessSection(),
-    "",
-    ...buildActionSection(),
     "",
     ...buildSourceAppendix(fetchResult),
     "",
