@@ -20,8 +20,6 @@
 - `first-run-runbook.md`：第一轮运行手册
 - `daily-send-log.md`：日常发送记录，记录已跑通的发送顺序与检查点
 - `first-run-json-mapping.md`：第一轮检索记录到抓取 JSON 的映射说明
-- `first-run-fetch-template.json`：第一轮抓取结果模板
-- `first-run-fetch-sample-set.json`：第一轮抓取结果示例集
 - `draft.md`：情报成稿
 - `send-output-schema.json`：发送阶段输出 JSON 结构
 - `send-output-example.json`：发送阶段输出 JSON 示例
@@ -47,8 +45,6 @@
 `first-run-runbook.md` 可作为第一轮的单页运行手册，开工时优先查看。
 `daily-send-log.md` 可作为日常发送记录，用来复核已跑通的发送顺序、检查点和输出文件。
 `first-run-json-mapping.md` 可作为第一轮人工记录整理成抓取 JSON 的转换说明。
-`first-run-fetch-template.json` 可作为第一轮实际抓取结果的 JSON 填写模板。
-`first-run-fetch-sample-set.json` 可作为第一轮完整抓取结果的示例参考。
 `community-source-template.md` 提供社区/科技媒体采集模版，按 Reddit/Hacker News/Tech Media 分组填入采集时间、标题、摘要、topic 关键词与 `source_tier`，并为播客/领袖人物额外记录 show notes/摘要；填完后把关键链接同步写入 `first-run-source-log.md` 并标注来源等级。
 `daily-collection-card.md` 是执行该流程的每日卡片，按卡完成采集→记录→链接归档→成稿准备，再运行 `generate:all`。
 `validate:ai-industry-samples` 可用于校验抓取示例、首轮样例和发送示例是否符合固定结构与标题约定，当前实现为纯 Node 脚本，不依赖 `tsx`。

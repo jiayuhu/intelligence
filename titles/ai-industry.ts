@@ -25,7 +25,8 @@ export const aiIndustryTitles: AiIndustryTitleSet = {
 };
 
 export function getAiIndustryEmailSubject(reportDate: string): string {
-  return `${aiIndustryTitles.emailSubjectPrefix}${aiIndustryTitles.emailSubjectBase} · ${reportDate}`;
+  // 格式: AI行业情报 | 2026-04-06 | 48小时滚动监测
+  return `${aiIndustryTitles.reportTitle} | ${reportDate} | ${aiIndustryTitles.reportSubtitle}`;
 }
 
 export function getAiIndustryPdfTitle(reportDate: string): string {

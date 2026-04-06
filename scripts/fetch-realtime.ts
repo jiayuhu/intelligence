@@ -26,13 +26,13 @@ const repoRoot = resolve(__dirname, "..");
 
 // 搜索配置
 const SEARCH_TASKS = [
-  { id: 1, query: "OpenAI news April 2026", priority: "P0", category: "头部 AI 企业", company: "OpenAI" },
-  { id: 2, query: "Anthropic Claude update April 2026", priority: "P0", category: "头部 AI 企业", company: "Anthropic" },
+  { id: 1, query: "OpenAI news April 2026", priority: "P0", category: "模型与基础设施", company: "OpenAI" },
+  { id: 2, query: "Anthropic Claude update April 2026", priority: "P0", category: "模型与基础设施", company: "Anthropic" },
   { id: 3, query: "GitHub Copilot agent April 2026", priority: "P0", category: "AI Coding", company: "GitHub" },
   { id: 4, query: "Google Gemini AI update April 2026", priority: "P0", category: "模型与基础设施", company: "Google" },
-  { id: 5, query: "xAI Grok update April 2026", priority: "P1", category: "头部 AI 企业", company: "xAI" },
-  { id: 6, query: "Sam Altman OpenAI statement April 2026", priority: "P1", category: "AI 领袖人物", company: "OpenAI" },
-  { id: 7, query: "Meta AI update April 2026", priority: "P1", category: "头部 AI 企业", company: "Meta" },
+  { id: 5, query: "xAI Grok update April 2026", priority: "P1", category: "模型与基础设施", company: "xAI" },
+  { id: 6, query: "Sam Altman OpenAI statement April 2026", priority: "P1", category: "模型与基础设施", company: "OpenAI" },
+  { id: 7, query: "Meta AI update April 2026", priority: "P1", category: "模型与基础设施", company: "Meta" },
   { id: 8, query: "AI industry news April 2026", priority: "P2", category: "模型与基础设施", company: "General" },
 ];
 
@@ -40,10 +40,7 @@ const SEARCH_TASKS = [
 const CATEGORY_KEYWORDS: Record<string, string[]> = {
   "AI Agent": ["agent", "openclaw", "devin", "multi-agent", "autonomous", "task execution"],
   "AI Coding": ["copilot", "cursor", "claude code", "coding assistant", "ide", "github", "codex"],
-  "头部 AI 企业": ["openai", "anthropic", "google", "meta", "microsoft", "xai", "funding", "acquisition", "valuation"],
-  "AI 领袖人物": ["sam altman", "dario amodei", "sundar pichai", "interview", "ceo", "chief"],
-  "模型与基础设施": ["model", "gpt", "claude", "gemini", "benchmark", "inference", "llm"],
-  "开源生态": ["open source", "github", "huggingface", "llama", "mistral"],
+  "模型与基础设施": ["model", "gpt", "claude", "gemini", "benchmark", "inference", "llm", "openai", "anthropic", "google", "meta", "microsoft", "xai", "cohere", "mistral", "perplexity", "cursor", "funding", "acquisition", "valuation", "sam altman", "dario amodei", "sundar pichai", "interview", "ceo", "chief", "open source", "github", "huggingface", "llama", "mistral"],
   "政策与监管": ["regulation", "policy", "compliance", "safety", "ai act"],
 };
 

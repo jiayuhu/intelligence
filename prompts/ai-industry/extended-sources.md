@@ -19,7 +19,7 @@
 | RSS/API | `https://x.ai/api/rss` (如可用) |
 | 站点 | `https://x.ai`, Grok 官方 X 账号 |
 | 扫描频率 | 每日 |
-| 分类 | 头部 AI 企业 |
+| 分类 | AI 公司 |
 
 ### 2. Cohere
 | 属性 | 内容 |
@@ -30,7 +30,7 @@
 | RSS/API | `https://cohere.com/blog/rss.xml` |
 | 站点 | `https://cohere.com/blog` |
 | 扫描频率 | 每日 |
-| 分类 | 头部 AI 企业 |
+| 分类 | AI 公司 |
 
 ### 3. Stability AI
 | 属性 | 内容 |
@@ -118,7 +118,7 @@
 | RSS/API | `https://mistral.ai/news` |
 | 站点 | `https://mistral.ai/news` |
 | 扫描频率 | 每日 |
-| 分类 | 头部 AI 企业 |
+| 分类 | AI 公司 |
 
 ---
 
@@ -474,7 +474,7 @@
 
 | 分类 | 来源数量 | 来源列表 |
 |------|---------|---------|
-| 头部 AI 企业 | 4 | xAI, Cohere, Mistral AI, Perplexity |
+| AI 公司 | 4 | xAI, Cohere, Mistral AI, Perplexity |
 | AI Coding | 3 | Cursor, Windsurf, GitHub Copilot (已有) |
 | AI Agent | 7 | LangChain, LlamaIndex, Vercel AI SDK, AutoGen, CrewAI, Dify, n8n AI, Perplexity |
 | 开源生态 | 3 | Stability AI, Replicate, Together AI |
@@ -623,7 +623,7 @@
 
 | 分类 | 来源数量 | 来源列表 |
 |------|---------|---------|
-| 头部 AI 企业 | 4 | xAI, Cohere, Mistral AI, Perplexity |
+| AI 公司 | 4 | xAI, Cohere, Mistral AI, Perplexity |
 | AI Coding | 3 | Cursor, Windsurf, GitHub Copilot (已有) |
 | AI Agent | 7 | LangChain, LlamaIndex, Vercel AI SDK, AutoGen, CrewAI, Dify, n8n AI, Perplexity |
 | 开源生态 | 3 | Stability AI, Replicate, Together AI |

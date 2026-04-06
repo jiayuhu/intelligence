@@ -12,22 +12,17 @@ import type {
 const VALID_CLASSIFICATIONS: AiIndustryClassification[] = [
   "AI Agent",
   "AI Coding",
-  "头部 AI 企业",
-  "AI 领袖人物",
   "模型与基础设施",
-  "开源生态",
   "政策与监管",
-  "待确认线索",
+  "社区热点",
 ];
 
-const GROUP_ORDER: Array<Exclude<AiIndustryClassification, "待确认线索">> = [
+const GROUP_ORDER: AiIndustryClassification[] = [
   "AI Agent",
   "AI Coding",
-  "头部 AI 企业",
-  "AI 领袖人物",
   "模型与基础设施",
-  "开源生态",
   "政策与监管",
+  "社区热点",
 ];
 
 type SourceLogEntry = {
@@ -82,11 +77,7 @@ export function normalizeClassification(value: string | undefined): AiIndustryCl
     return normalized as AiIndustryClassification;
   }
 
-  if (normalized === "Headliners") {
-    return "头部 AI 企业";
-  }
-
-  return "待确认线索";
+  return "模型与基础设施";
 }
 
 function normalizeStatus(value: string | undefined): AiIndustryItemStatus {
@@ -166,7 +157,7 @@ export function normalizeFetchResult(input: AiIndustryFetchResult): AiIndustryFe
 }
 
 export function extractSourceLogEntries(markdown: string): SourceLogEntry[] {
-  const marker = "## 本期已记录条目";
+  const marker = "## 本期记录条目";
   const markerIndex = markdown.indexOf(marker);
   if (markerIndex === -1) {
     return [];

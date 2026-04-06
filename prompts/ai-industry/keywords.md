@@ -1,7 +1,7 @@
 # AI行业情报第一期抓取关键词表
 
 ## 目标
-这份表用于第一期 `AI行业情报` 的信息抓取，优先覆盖 `AI Agent`、`AI Coding`、头部 AI 企业和 AI 领袖人物。
+这份表用于第一期 `AI行业情报` 的信息抓取，优先覆盖 `AI Agent`、`AI Coding`、AI 公司和 AI 领袖人物。
 
 ## 抓取原则
 - 只抓 `48` 小时内发布或更新的信息
@@ -31,7 +31,7 @@
 - `agentic coding`
 - `code review assistant`
 
-### 3. 头部 AI 企业
+### 3. AI 公司
 - `OpenAI launch`
 - `Anthropic update`
 - `Google DeepMind release`
@@ -40,6 +40,11 @@
 - `GitHub Copilot`
 - `AWS AI`
 - `NVIDIA AI`
+- `xAI Grok`
+- `Cohere Command`
+- `Mistral AI`
+- `Perplexity AI`
+- `Cursor AI`
 
 ### 4. AI 领袖人物
 - `CEO interview AI`

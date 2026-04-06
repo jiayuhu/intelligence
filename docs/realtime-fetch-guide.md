@@ -55,7 +55,7 @@
 ```markdown
 - 标题：[新闻标题]
 - 检索时间：2026-04-05 21:00
-- 主题分类：[AI Agent / AI Coding / 头部 AI 企业 / AI 领袖人物 / 模型与基础设施]
+- 主题分类：[AI Agent / AI Coding / AI 公司 / AI 领袖人物 / 模型与基础设施]
 - 检索语句：[使用的搜索词]
 - 来源名称：[官方来源/媒体名称]
 - 来源链接：[URL]
@@ -214,7 +214,7 @@ Tier 3 (P2): 社区讨论、二级市场分析
 | Copilot/Cursor/IDE 工具 | AI Coding | Copilot 新功能、数据政策变更 |
 | Claude Code/OpenClaw/Devin | AI Coding | 代码 Agent 相关 |
 | MultiOn/Adept/通用助手 | AI Agent | 任务执行、自动化 |
-| OpenAI/Anthropic/Google 公司动态 | 头部 AI 企业 | 融资、收购、产品发布 |
+| OpenAI/Anthropic/Google 等公司动态 | AI 公司 | 融资、收购、产品发布 |
 | Sam Altman/Dario 等高管发言 | AI 领袖人物 | 采访、文章、演讲 |
 | 模型发布/基准测试 | 模型与基础设施 | Grok 4.1、Gemini 3.1 |
 
@@ -278,7 +278,7 @@ echo "完成！"
 | `prompts/ai-industry/first-run-source-log.md` | 情报输入源（需要手动更新） |
 | `src/lib/fetch.ts` | 解析 source log 生成 JSON |
 | `src/lib/intelligence-engine/value-assessor.ts` | 价值评估引擎 |
-| `scripts/generate-md-v2.ts` | Markdown 报告生成 |
+| `scripts/generate-md.ts` | Markdown 报告生成 |
 | `prompts/ai-industry/sources.md` | 信息源优先级配置（参考用） |
 | `prompts/ai-industry/keywords.md` | 关键词表（参考用） |
 

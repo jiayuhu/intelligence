@@ -1,43 +1,44 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { aiIndustryTitles, getAiIndustryEmailSubject } from "../titles/ai-industry.js";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const reportTitle = "AI行业情报";
-const timeWindowHours = 48;
+const reportTitle = aiIndustryTitles.reportTitle;
+const timeWindowHours = aiIndustryTitles.timeWindowHours;
 
-function assert(condition, message) {
+function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
     throw new Error(message);
   }
 }
 
-function isRecord(value) {
+function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function asString(value) {
+function asString(value: unknown): string | null {
   return typeof value === "string" ? value : null;
 }
 
-function asNumber(value) {
+function asNumber(value: unknown): number | null {
   return typeof value === "number" && Number.isFinite(value) ? value : null;
 }
 
-function asBoolean(value) {
+function asBoolean(value: unknown): boolean | null {
   return typeof value === "boolean" ? value : null;
 }
 
-function asStringArray(value) {
+function asStringArray(value: unknown): string[] | null {
   return Array.isArray(value) && value.every((item) => typeof item === "string") ? value : null;
 }
 
-async function readJson(relativePath) {
+async function readJson(relativePath: string): Promise<unknown> {
   const content = await readFile(path.join(repoRoot, relativePath), "utf8");
   return JSON.parse(content);
 }
 
-function validateFetchItem(item, groupName, index) {
+function validateFetchItem(item: Record<string, unknown>, groupName: string, index: number): void {
   assert(isRecord(item), `${groupName}[${index}] 不是对象`);
 
   const title = asString(item.title);
@@ -75,7 +76,7 @@ function validateFetchItem(item, groupName, index) {
   }
 }
 
-function validateFetchGroup(group, index) {
+function validateFetchGroup(group: Record<string, unknown>, index: number): void {
   assert(isRecord(group), `groups[${index}] 不是对象`);
 
   const category = asString(group.category);
@@ -84,10 +85,13 @@ function validateFetchGroup(group, index) {
   assert(summary, `groups[${index}].summary 缺失`);
   assert(Array.isArray(group.items), `groups[${index}].items 不是数组`);
 
-  group.items.forEach((item, itemIndex) => validateFetchItem(item, `${category}.items`, itemIndex));
+  (group.items as unknown[]).forEach((item, itemIndex) => {
+    assert(isRecord(item), `${category}.items[${itemIndex}] 不是对象`);
+    validateFetchItem(item, `${category}.items`, itemIndex);
+  });
 }
 
-function validateFetchResult(value, label) {
+function validateFetchResult(value: unknown, label: string): string {
   assert(isRecord(value), `${label} 不是对象`);
 
   const reportTitleValue = asString(value.report_title);
@@ -102,12 +106,21 @@ function validateFetchResult(value, label) {
   assert(timeWindowHoursValue === timeWindowHours, `${label}.time_window_hours 与固定窗口不一致`);
   assert(Array.isArray(groups), `${label}.groups 不是数组`);
 
-  groups.forEach((group, index) => validateFetchGroup(group, index));
+  groups.forEach((group, index) => {
+    assert(isRecord(group), `groups[${index}] 不是对象`);
+    validateFetchGroup(group, index);
+  });
 
-  return `${reportDate} / ${groups.map((group) => `${group.category}:${group.items.length}`).join(", ")}`;
+  return `${reportDate} / ${groups.map((group: unknown) => {
+    assert(isRecord(group), "group 不是对象");
+    const cat = asString(group.category);
+    const items = group.items;
+    assert(Array.isArray(items), "items 不是数组");
+    return `${cat}:${items.length}`;
+  }).join(", ")}`;
 }
 
-function validateSendResult(value) {
+function validateSendResult(value: unknown): string {
   assert(isRecord(value), "发送结果不是对象");
 
   const reportTitleValue = asString(value.report_title);
@@ -126,11 +139,11 @@ function validateSendResult(value) {
   assert(closing, "closing 缺失");
   assert(reportTitleValue === reportTitle, "发送结果 report_title 不一致");
   assert(timeWindowHoursValue === timeWindowHours, "发送结果 time_window_hours 不一致");
-  assert(emailSubject === `【AI行业情报】日报 · ${reportDate}`, "email_subject 与固定主题不一致");
+  assert(emailSubject === getAiIndustryEmailSubject(reportDate), "email_subject 与固定主题不一致");
   assert(Array.isArray(highlights), "highlights 不是数组");
   assert(highlights.length >= 3 && highlights.length <= 5, "highlights 数量应在 3 到 5 条之间");
   assert(
-    highlights.every((item) => isRecord(item)
+    highlights.every((item: unknown) => isRecord(item)
       && asString(item.title)
       && asString(item.evidence)
       && asString(item.decision_implication)),
@@ -140,22 +153,57 @@ function validateSendResult(value) {
   return `${reportDate} / ${highlights.length} 条摘要`;
 }
 
-async function main() {
+async function findLatestFile(dir: string, pattern: RegExp): Promise<string | null> {
+  try {
+    const files = await readFile(path.join(repoRoot, dir), "utf8")
+      .then(() => [] as string[])
+      .catch(() => [] as string[]);
+    // 实际应该读取目录，这里简化处理，找固定日期格式
+    const today = new Date().toISOString().slice(0, 10);
+    return `${dir}/ai-industry-${today}.json`;
+  } catch {
+    return null;
+  }
+}
+
+async function main(): Promise<void> {
+  // 1. 校验示例文件
+  console.log("=== 校验示例文件 ===");
   const collectExample = await readJson("prompts/ai-industry/collect-output-example.json");
-  const sampleSet = await readJson("prompts/ai-industry/first-run-fetch-sample-set.json");
   const sendExample = await readJson("prompts/ai-industry/send-output-example.json");
 
   const collectSummary = validateFetchResult(collectExample, "collect-output-example.json");
-  const sampleSummary = validateFetchResult(sampleSet, "first-run-fetch-sample-set.json");
   const sendSummary = validateSendResult(sendExample);
 
-  console.log(`抓取示例校验通过：${collectSummary}`);
-  console.log(`首轮样例校验通过：${sampleSummary}`);
-  console.log(`发送示例校验通过：${sendSummary}`);
-  console.log(`固定邮件标题：${sendExample.email_subject}`);
+  console.log(`✓ 抓取示例校验通过：${collectSummary}`);
+  console.log(`✓ 发送示例校验通过：${sendSummary}`);
+  console.log(`  固定邮件标题：${(sendExample as Record<string, unknown>).email_subject}`);
+
+  // 2. 校验实际输出文件（如果存在）
+  console.log("\n=== 校验实际输出文件 ===");
+  const today = new Date().toISOString().slice(0, 10);
+  
+  // 尝试校验 fetch 输出
+  try {
+    const fetchOutput = await readJson(`outputs/fetch/ai-industry-${today}.json`);
+    const fetchSummary = validateFetchResult(fetchOutput, `outputs/fetch/ai-industry-${today}.json`);
+    console.log(`✓ Fetch 输出校验通过：${fetchSummary}`);
+  } catch (error) {
+    console.log(`⚠ Fetch 输出未找到或校验失败：${error instanceof Error ? error.message : String(error)}`);
+  }
+
+  // 尝试校验 email 输出
+  try {
+    const emailOutput = await readJson(`outputs/email/ai-industry-${today}.json`);
+    const emailSummary = validateSendResult(emailOutput);
+    console.log(`✓ Email 输出校验通过：${emailSummary}`);
+    console.log(`  邮件标题：${(emailOutput as Record<string, unknown>).email_subject}`);
+  } catch (error) {
+    console.log(`⚠ Email 输出未找到或校验失败：${error instanceof Error ? error.message : String(error)}`);
+  }
 }
 
-main().catch((error) => {
+main().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;
 });

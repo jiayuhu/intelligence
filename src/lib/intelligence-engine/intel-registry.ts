@@ -28,33 +28,30 @@ export const AI_INDUSTRY_CONFIG: IntelTypeConfig = {
   classifications: [
     "AI Agent",
     "AI Coding", 
-    "头部 AI 企业",
-    "AI 领袖人物",
     "模型与基础设施",
-    "开源生态",
     "政策与监管",
-    "待确认线索",
+    "社区热点",
   ],
   
   sources: [
     {
       name: "OpenAI",
       tier: "tier1",
-      category: "头部 AI 企业",
+      category: "模型与基础设施",
       urls: ["https://openai.com/blog", "https://openai.com/news"],
       priority: 1,
     },
     {
       name: "Anthropic",
       tier: "tier1", 
-      category: "头部 AI 企业",
+      category: "模型与基础设施",
       urls: ["https://anthropic.com/news", "https://anthropic.com/research"],
       priority: 2,
     },
     {
       name: "Google DeepMind",
       tier: "tier1",
-      category: "头部 AI 企业", 
+      category: "模型与基础设施", 
       urls: ["https://deepmind.google/discover/blog"],
       priority: 3,
     },

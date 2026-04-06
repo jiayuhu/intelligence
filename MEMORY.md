@@ -1,6 +1,6 @@
 # AI Industry Intelligence System - Memory
 
-> Last updated: 2026-04-05
+> Last updated: 2026-04-06
 > Extracted from development conversation
 
 ---
@@ -14,89 +14,153 @@
 | **Tech Stack** | TypeScript/Node.js, `tsx` for execution, Playwright for PDF generation |
 | **Email Channel** | AgentMail (tigerhooo@agentmail.to → tigerhooo@126.com) |
 | **Reader Constraint** | Designed for "extremely few readers" - deliberately avoiding historical storage, personalization engines, or A/B testing |
+| **Test Framework** | Vitest (40 tests, all passing) |
 
 ---
 
-## 2. Report Structure v2.0 (Final)
+## 2. Report Structure v3.0 (Current)
+
+Simplified structure with 5 core categories:
 
 ```
 一、执行摘要（Executive Summary）
    ├── 一句话总览（宏观主题提炼）
-   ├── 关键数据（表格：情报数、平均分、Agent占比等）
-   ├── 本期最大看点（3个深度洞察）
-   └── 阅读指引
+   ├── 关键数据（情报数、高价值数、平均分）
+   └── 本期最大看点（5条精炼要点）
 
-二、核心动态（按专栏分类）
-   ├── AI Agent（合并为一个专栏，不再细分代码型/通用型/企业型）
-   ├── AI Coding
-   ├── AI 企业（原"头部 AI 企业"）
-   ├── AI 领袖人物
-   ├── 模型与基础设施
-   ├── 开源生态
-   ├── 政策与监管
-   ├── 社媒热点（新增：Twitter/X、LinkedIn、Reddit、HackerNews等）
-   └── 其他动态
+二、AI Agent（一级章节）
+三、AI Coding
+四、模型 / 基础设施 / 开源生态
+五、政策 / 监管 / 合规
+六、社区热点追踪
 
-三、趋势洞察（数据可视化）
-   ├── 价值分布概览（表格）
-   ├── 时间线分布（柱状图）
-   ├── 主要情报来源
-   ├── 企业动态对比（GitHub vs OpenAI）
-   ├── 本期热点关键词
-   └── 关键趋势判断
+七、趋势判断
+   ├── 核心趋势（2-4个）
+   └── 值得关注的信号（2-3个）
 
-四、建议动作
-五、信息缺口与追踪清单
+八、机会与风险（动态生成）
+九、建议动作
+十、信息缺口与追踪清单
+十一、邮件发送摘要
 ```
+
+### Removed from v2.0
+- ❌ "AI 公司" category (merged into 模型与基础设施)
+- ❌ "AI 领袖人物" category (merged into 模型与基础设施)
+- ❌ "开源生态" standalone category (merged into 模型与基础设施)
+- ❌ "待确认线索" category
 
 ---
 
 ## 3. Content Specifications
 
-### Event Description Requirements
-- **Length**: 300-500 characters total
-- **Main description**: ≥ 200 characters
-- **Structure**:
-  1. Core facts (event_summary)
-  2. Strategic impact (why_it_matters)
-  3. Supporting sources (community feedback)
-  4. Related focus areas
-  5. Decision recommendations
-  6. Timeline suggestion
+### Simplified Entry Format (v3.0)
+```markdown
+#### [#排名 | 分数] 标题
 
-### Removed Sections (as of final version)
-- ❌ Decision suggestions (高管层/产品层/技术层)
-- ❌ Value scoring (5-dimension: novelty/impact/credibility/timeliness/relevance)
-- ❌ Watch items checklist
+事件内容描述（150-250字，已清洗导航文本、代码块等）
 
-### Kept Sections
-- ✅ Event (detailed, 300-500 chars)
-- ✅ Time
-- ✅ Source (with credibility & priority)
-- ✅ Impact Analysis (optional, simplified)
+时间：YYYY-MM-DD | 来源：来源名称（可信度 | 优先级）
+链接：URL
+```
 
----
+### Removed Elements
+- ❌ "**事件**：" label
+- ❌ "**影响分析**" section
+- ❌ Fixed template text ("建议企业从技术实现...")
+- ❌ Navigation text ("Skip to main content", "Open menu")
+- ❌ Multi-language menus ("Magyar", "Deutsch", etc.)
+- ❌ Code blocks (replaced with "[代码]")
 
-## 4. Visual Theme: Amethyst Dark (紫晶暗)
+### Content Cleaning Pipeline
+```typescript
+// Pre-filter during fetch
+const spamPatterns = [
+  /Results for.*关键词/i,
+  /官网.*abcde/i,
+  /^\s*关键词\s*[{｛]/i,
+];
 
-| Element | Color | Usage |
-|---------|-------|-------|
-| **Primary** | `#312e81` | Headings, strong text, borders |
-| **Accent** | `#8b5cf6` | Section markers, left borders |
-| **Background** | `#ffffff` | Card backgrounds |
-| **Outer BG** | `#f8f7fb` | Page background |
-| **Text** | `#374151` | Body text |
-| **Muted** | `#6b7280` | Secondary text |
+// Clean during markdown generation
+const navPatterns = [
+  /Skip to main content/gi,
+  /Open menu|Open navigation/gi,
+  /Magyar|Deutsch|Português|Español|Suomi|Filipino/g,
+  /Terms|Privacy|Security|Status|Community|Docs|Contact/g,
+];
 
-**Style Characteristics**:
-- Minimal modern design
-- No gradients, shadows, or complex decorations
-- Left border accent (3-4px) for hierarchy
-- Table-based layout for email compatibility
+// Remove code blocks
+cleaned = cleaned.replace(/```[\s\S]*?```/g, "[代码]");
+```
 
 ---
 
-## 5. Key Scripts & Commands
+## 4. Classification System (v3.0 - 5 Categories)
+
+### Current Categories
+```typescript
+type AiIndustryClassification =
+  | "AI Agent"
+  | "AI Coding"
+  | "模型与基础设施"
+  | "政策与监管"
+  | "社区热点";
+```
+
+### Keyword Mapping
+```typescript
+const CATEGORY_KEYWORDS = {
+  "AI Agent": ["agent", "autonomous", "task execution", "workflow", "orchestration", "multi-agent", "openclaw", "devin", "operator", "computer use"],
+  "AI Coding": ["copilot", "cursor", "claude code", "coding", "github", "codex", "ide", "programming assistant", "windsurf", "codeium"],
+  "模型与基础设施": ["openai", "anthropic", "google", "meta", "microsoft", "xai", "cohere", "mistral", "perplexity", "funding", "acquisition", "valuation", "gpt-4", "gpt-5", "claude 3", "gemini", "llama 4", "model benchmark", "llm", "inference", "gpu", "nvidia", "training", "blackwell", "h200", "infrastructure", "open source", "huggingface", "llama", "mistral", "github repository", "open weights"],
+  "政策与监管": ["regulation", "policy", "compliance", "governance", "safety", "ai act", "监管", "政策", "executive order"],
+  "社区热点": ["reddit", "hackernews", "ycombinator", "twitter discussion", "x.com", "dev.to", "hashnode", "community discussion", "developer forum"],
+};
+```
+
+### Priority Order
+1. 社区热点 (highest - catches social signals)
+2. AI Agent
+3. AI Coding
+4. 模型与基础设施 (includes merged categories)
+5. 政策与监管
+
+---
+
+## 5. Configuration Management
+
+### Single Source of Truth Pattern
+All configuration centralized in `titles/ai-industry.ts`:
+
+```typescript
+export const aiIndustryTitles = {
+  slug: "ai-industry",
+  reportTitle: "AI行业情报",
+  reportSubtitle: "48小时滚动监测",
+  emailSubjectPrefix: "【AI行业情报】",
+  emailSubjectBase: "日报",
+  pdfTitleBase: "AI行业情报报告",
+  promptTitle: "AI行业情报提示词",
+  fileBaseName: "ai-industry",
+  timeWindowHours: 48,  // Single source for time window
+  recipientGroup: "ai-industry",
+};
+
+export function getAiIndustryEmailSubject(reportDate: string): string {
+  // Format: AI行业情报 | 2026-04-06 | 48小时滚动监测
+  return `${aiIndustryTitles.reportTitle} | ${reportDate} | ${aiIndustryTitles.reportSubtitle}`;
+}
+```
+
+### Benefits
+- No hardcoded values scattered in scripts
+- Consistent email titles across all outputs
+- Easy to change time window (48h → 24h) in one place
+- Type-safe with TypeScript
+
+---
+
+## 6. Key Scripts & Commands
 
 ```bash
 # Generate all artifacts
@@ -108,360 +172,290 @@ npm run generate:report   # Generate HTML
 npm run export:pdf        # Export PDF
 npm run render:email      # Generate email preview
 npm run send:email        # Send via AgentMail
+npm run validate:ai-industry-samples  # Validate examples AND actual output
 
-# Validation
-npm run validate:ai-industry-samples
+# Testing
+npm test                  # Run all tests
+npm run test:watch        # Watch mode
+npm run test:ui           # UI mode
+
+# Fetching
+npm run fetch:tavily      # Tavily Search API (recommended)
+npm run fetch:google      # Google Search API
+npm run fetch             # Unified fetch (RSS→Cheerio→Playwright)
 ```
 
 ---
 
-## 6. Automation Support
+## 7. Email Title Standardization
 
-### Cron Job Compatible
-```cron
-# Daily at 09:00 Beijing time
-0 9 * * * cd /home/jiayuhu/dev/intelligence && npm run generate:all >> /var/log/intelligence.log 2>&1
+### Format
+```
+AI行业情报 | YYYY-MM-DD | 48小时滚动监测
 ```
 
-### GitHub Actions (Recommended)
-- Supports scheduled runs (`cron: '0 1 * * *'` for UTC 01:00)
-- Supports manual trigger (`workflow_dispatch`)
-- Requires secrets: `AGENTMAIL_API_KEY`, `AGENTMAIL_INBOX_ID`
-
----
-
-## 7. Robustness Patterns
-
-### Defensive Programming
-- **Strings**: `value || "default"`
-- **Arrays**: Check `?.length` before iteration
-- **Objects**: Use optional chaining `?.`
-- **Division**: Protect against divide-by-zero
-
-### Example
+### Implementation
+All scripts import from single source:
 ```typescript
-const avgScore = items.length > 0 
-  ? Math.round(items.reduce((sum, a) => sum + (a?.totalScore || 0), 0) / items.length)
-  : 0;
+import { getAiIndustryEmailSubject } from "../titles/ai-industry.js";
+
+const emailSubject = getAiIndustryEmailSubject(reportDate);
 ```
+
+### Files Using This Function
+- `generate-send-prompt.ts`
+- `generate-send-output.ts`
+- `send-html-email.ts`
+- `send-email.ts`
+- `validate-ai-industry-samples.ts`
 
 ---
 
-## 8. AI Agent Classification
+## 8. Validation Strategy
 
-### Subtypes (merged into single "AI Agent" column)
-- `AI Agent - 代码型` (Coding Agents like OpenClaw, Devin)
-- `AI Agent - 通用型` (General Agents like MultiOn, Adept)
-- `AI Agent - 企业型` (Enterprise Agents)
+### Enhanced Validation (v3.0)
+`validate-ai-industry-samples.ts` now validates:
+1. Example files (`collect-output-example.json`, `send-output-example.json`)
+2. **Actual output files** (`outputs/fetch/ai-industry-YYYY-MM-DD.json`, `outputs/email/ai-industry-YYYY-MM-DD.json`)
 
-### Detection Logic
+### Validation Checks
+- Report title consistency
+- Time window hours match configuration
+- Email subject matches `getAiIndustryEmailSubject()`
+- Classification values are valid enum members
+- Highlights count (3-5 items)
+- Required fields present
+
+---
+
+## 9. Dynamic Content Generation
+
+### Opportunities & Risks (No Longer Static)
 ```typescript
-const isAgent = 
-  item.classification?.startsWith("AI Agent") ||
-  item.title.toLowerCase().includes("agent") ||
-  item.title.toLowerCase().includes("openclaw") ||
-  item.title.toLowerCase().includes("devin");
-```
-
----
-
-## 9. Social Media Sources
-
-Recognized patterns for "社媒热点" column:
-- `twitter.com`, `x.com`
-- `linkedin.com`
-- `reddit.com`
-- `news.ycombinator.com` (HackerNews)
-- `producthunt.com`
-- `dev.to`
-- `medium.com`
-- `substack.com`
-
----
-
-## 10. File Naming Conventions
-
-| Output | Pattern | Example |
-|--------|---------|---------|
-| Markdown | `ai-industry-YYYY-MM-DD.md` | `ai-industry-2026-04-05.md` |
-| HTML | `ai-industry-YYYY-MM-DD.html` | `ai-industry-2026-04-05.html` |
-| PDF | `ai-industry-YYYY-MM-DD.pdf` | `ai-industry-2026-04-05.pdf` |
-| Email | `ai-industry-YYYY-MM-DD.eml` | `ai-industry-2026-04-05.eml` |
-
----
-
-## 11. Real-time Data Acquisition (Critical Finding)
-
-### The Problem
-The original system had a **static data source issue**:
-- `first-run-source-log.md` contained only 8 static sample entries
-- `generate:fetch` script only reads from this static file, performs no real-time scraping
-- Rich configurations (`sources.md`, `keywords.md`, `search-queries.md`) exist but aren't actively used
-- Result: Reports generated with stale/outdated information
-
-### The Solution
-**Use SearchWeb for real-time information gathering**:
-
-```typescript
-// Search key sources individually
-SearchWeb({ query: "OpenAI news April 2026", limit: 10 })
-SearchWeb({ query: "Anthropic Claude update April 2026", limit: 10 })
-SearchWeb({ query: "GitHub Copilot agent April 2026", limit: 10 })
-SearchWeb({ query: "xAI Grok update April 2026", limit: 8 })
-SearchWeb({ query: "Google Gemini AI update April 2026", limit: 8 })
-```
-
-### Source Priority for Search
-1. **P0 (Tier 1)**: OpenAI, Anthropic, Google DeepMind, Meta AI, Microsoft/GitHub
-2. **P1 (Tier 2)**: xAI, Cursor, TechCrunch, VentureBeat, The Verge
-3. **P2 (Tier 3)**: Developer communities (Reddit, HackerNews), LinkedIn
-
-### Update Workflow
-```
-1. SearchWeb() → Get real-time news
-2. Parse & filter (48h window, high credibility)
-3. Update first-run-source-log.md with new entries
-4. Run npm run generate:all
-```
-
-### April 5, 2026 Real-time Results Example
-| Source | Key Intelligence |
-|--------|------------------|
-| OpenAI | Acquired TBPN ($100M+), Raised $122B, Shutting down Sora |
-| Anthropic | Banned third-party tools (OpenClaw), Claude Code v2.1.92, Source code leak |
-| GitHub | Copilot SDK public preview, Data policy change (Apr 24) |
-| xAI | Grok 4.1 released (256K context, real-time search) |
-| Google | Gemini 3.1 Flash Live (voice-first, import from ChatGPT) |
-| Altman | "The Gentle Singularity" essay - AI novel insights by 2026 |
-
----
-
-## 12. Classification System Changes
-
-### Before (v1.x)
-- `AI Agent - 通用型`
-- `AI Agent - 代码型`
-- `AI Agent - 企业型`
-
-### After (v2.0)
-- `AI Agent` (merged single category)
-
-**Rationale**: Simplified taxonomy, all Agent-related items go to one column. Detection still identifies coding agents via keywords ("openclaw", "devin", "coding agent").
-
-### Files Modified for Classification Merge
-1. `src/types/ai-industry.ts` - Type definition
-2. `src/lib/fetch.ts` - VALID_CLASSIFICATIONS & GROUP_ORDER
-3. `scripts/generate-md.ts` - CATEGORY_TITLES mapping
-4. `src/lib/intelligence-engine/value-assessor.ts` - Scoring logic
-5. `prompts/ai-industry/collect-output-schema.json` - JSON schema
-
----
-
-## 13. Answered Questions (From Session)
-
-| Question | Answer |
-|----------|--------|
-| **Data Source** | `first-run-source-log.md` → parsed by `generate-fetch.ts` → JSON. Must be manually updated with SearchWeb results. |
-| **Classification** | Based on `主题分类` field in source log. Mapped to standard categories via `normalizeClassification()`. |
-| **Value Scoring** | Still calculated by `IntelligenceValueAssessor` but simplified display. Total score (0-100) used for ranking. |
-| **OpenClaw** | Third-party tool using Claude API. Anthropic banned subscription usage for such tools Apr 4, 2026. |
-
----
-
-## 14. Architecture Decisions (Confirmed)
-
-### 2026-04-05 Decisions
-
-| Decision | Choice | Rationale |
-|----------|--------|-----------|
-| **Automation Level** | **Full Automation** (Option C) | Zero manual intervention required after initial setup |
-| **Source Log Management** | **Date-based Archival** (Option A) | Daily files + 30-day auto-archive |
-| **Language** | **Chinese Only** | Target audience preference |
-| **Deduplication** | **Automatic** (Option B) | URL + title similarity (75% threshold) |
-
----
-
-## 15. New Commands (Added 2026-04-05)
-
-```bash
-# Show search tasks list
-npm run fetch:tasks
-
-# Execute realtime fetch (requires search-results.json)
-npm run fetch:realtime
-
-# Full automation workflow
-npm run generate:auto    # = fetch:realtime + generate:all
-```
-
----
-
-## 16. Source Log Architecture v2.0
-
-### Directory Structure
-```
-prompts/ai-industry/source-logs/
-├── 2026-04-05.md          # Daily log files
-├── 2026-04-06.md
-├── latest.md              # Symlink to today's file
-└── archive/               # Auto-archived (>30 days)
-    └── 2026-03-01.md
-```
-
-### Fallback Chain (generate-fetch.ts)
-1. `source-logs/latest.md` (preferred)
-2. `source-logs/YYYY-MM-DD.md` (today's date)
-3. `first-run-source-log.md` (legacy compatibility)
-4. Example JSON (fallback)
-
-### Auto-Archive Logic
-- Files older than 30 days automatically moved to `archive/`
-- Triggered on each `fetch:realtime` execution
-
----
-
-## 17. Realtime Fetch Workflow
-
-### Step 1: Show Tasks
-```bash
-npm run fetch:tasks
-```
-Outputs search queries to execute with SearchWeb.
-
-### Step 2: Execute Searches (Manual with Kimi CLI)
-Copy each query to Kimi CLI and run SearchWeb:
-```
-SearchWeb({ query: "OpenAI news April 2026", limit: 10 })
-```
-
-### Step 3: Save Results
-Save all results to `outputs/search-results.json`:
-```json
-[
-  {
-    "title": "...",
-    "url": "...",
-    "date": "2026-04-05",
-    "summary": "...",
-    "source": "TechCrunch",
-    "queryId": 1
+function buildOpportunitiesAndRisks(topItems: AssessedItem[]): string[] {
+  const highValueItems = topItems.filter(a => a.totalScore >= 80).slice(0, 3);
+  
+  // Generate from actual data, not hardcoded text
+  for (const item of highValueItems) {
+    lines.push(`${i + 1}. **${item.title}**：${item.why_it_matters}`);
   }
-]
-```
-
-### Step 4: Auto-Process
-```bash
-npm run fetch:realtime
-```
-Automatically:
-- Archives old logs (>30 days)
-- Reads `search-results.json`
-- Deduplicates (URL + 75% title similarity)
-- Auto-classifies by keywords
-- Generates `source-logs/YYYY-MM-DD.md`
-- Updates `latest.md` symlink
-
-### Step 5: Generate Report
-```bash
-npm run generate:all
-```
-
----
-
-## 18. Classification Keywords
-
-```typescript
-const CATEGORY_KEYWORDS = {
-  "AI Agent": ["agent", "openclaw", "devin", "multi-agent", "autonomous"],
-  "AI Coding": ["copilot", "cursor", "claude code", "coding assistant", "ide", "github"],
-  "头部 AI 企业": ["openai", "anthropic", "google", "meta", "microsoft", "xai", "funding"],
-  "AI 领袖人物": ["sam altman", "dario amodei", "sundar pichai", "interview", "ceo"],
-  "模型与基础设施": ["model", "gpt", "claude", "gemini", "benchmark", "inference"],
-  "开源生态": ["open source", "github", "huggingface", "llama"],
-  "政策与监管": ["regulation", "policy", "compliance", "safety"],
-};
-```
-
----
-
-## 19. Deduplication Algorithm
-
-```typescript
-function deduplicate(results: ParsedResult[]): ParsedResult[] {
-  // 1. URL exact match → remove
-  // 2. Title similarity > 75% → remove
-  // Threshold chosen to catch variations like:
-  //   "OpenAI Raises $100M" vs "OpenAI Announces $100M Funding"
 }
 ```
 
----
-
-## 20. Remaining Open Questions
-
----
-
-## 21. Future Enhancement Suggestions
-
-### High Priority (Implemented ✓)
-1. ✅ **Automated Search Integration**: `scripts/fetch-realtime.ts` created
-2. ✅ **Source Log Persistence**: Date-based archival implemented
-3. ✅ **Duplicate Detection**: 75% similarity threshold implemented
-
-### Medium Priority (In Progress)
-4. **GitHub Actions workflow**: Automated daily execution
-5. **Comprehensive README.md**: Document the full workflow
-6. **JSON schema validation**: Validate fetch data
-7. **Caching**: Cache PDF generation
-8. **Retry logic**: Email sending failures
-
-### Low Priority (Backlog)
-9. **Multi-language support**: English version
-10. **RSS Integration**: Subscribe to official blogs
-11. **Slack/Discord Integration**: Team notifications
-12. **Historical Trends**: Week-over-week analysis
-13. **API Integration**: Direct search API (Bing/Google) instead of manual SearchWeb
+### Benefits
+- Content reflects actual intelligence
+- No outdated references (e.g., "GPT-4.5退役")
+- Adaptable to any data set
 
 ---
 
+## 10. Removed Files
+
+| File | Reason |
+|------|--------|
+| `titles/ai-industry.js` | Redundant with .ts version; unified to TypeScript |
+| `prompts/ai-industry/first-run-fetch-template.json` | Placeholder, never used |
+| `prompts/ai-industry/first-run-fetch-sample-set.json` | Example data, superseded by actual outputs |
+
 ---
 
-## 22. Testing Results (2026-04-06)
+## 11. TypeScript Migration
 
-### 自动化流程测试
-```bash
-$ npm run fetch:realtime
-🚀 AI行业情报 - 全自动实时抓取
-📅 日期: 2026-04-06
+### Converted to .ts
+- `validate-ai-industry-samples.js` → `.ts`
 
-📦 检查旧日志归档...
-  无需归档
+### Benefits
+- Type safety for validation logic
+- Can import from `titles/ai-industry.ts` directly
+- Unified tooling (tsx for all scripts)
 
-📥 读取搜索结果...
-  读取到 12 条原始结果
+---
 
-🔍 执行去重...
-  去重: 移除 1 条重复/相似结果
-  保留 11 条唯一结果
+## 12. Time Window Configuration
 
-📊 分类统计:
-  - 头部 AI 企业: 6 条
-  - AI Agent: 2 条
-  - AI Coding: 3 条
+### Template Variables in Prompts
+```markdown
+## 抓取要求
+1. 仅收集 `{{reportDate}}` 之前 **{{timeWindowHours}} 小时**内发布或更新的信息。
 
-✅ 已生成: prompts/ai-industry/source-logs/2026-04-06.md
-✅ 已更新: latest.md
+## 输出格式
+- `time_window_hours`：固定为 `{{timeWindowHours}}`
+
+## 本期概览（{{timeWindowHours}} 小时监测）
 ```
 
-### 生成结果验证
-| 文件 | 大小 | 状态 |
-|------|------|------|
-| `source-logs/2026-04-06.md` | 10,588 bytes | ✅ 已生成 |
-| `fetch/ai-industry-2026-04-06.json` | 6,356 bytes | ✅ 已生成 |
-| `md/ai-industry-2026-04-06.md` | 10,260 bytes | ✅ 已生成 |
-| `html/ai-industry-2026-04-06.html` | 64,278 bytes | ✅ 已生成 |
-| `pdf/ai-industry-2026-04-06.pdf` | 994,966 bytes | ✅ 已生成 |
+### Script Usage
+```typescript
+const timeWindowHours = aiIndustryTitles.timeWindowHours;
+// Used in: generate-md.ts, generate-send-output.ts, etc.
+```
 
 ---
 
-*This memory file serves as a quick reference for the AI Industry Intelligence System architecture, design decisions, and implementation details.*
+## 13. Data Flow Architecture
+
+### Tavily Search Pipeline
+```
+Tavily API
+    ↓
+fetch-tavily.ts
+    ├──→ outputs/fetch/ai-industry-YYYY-MM-DD.json (structured data)
+    └──→ prompts/ai-industry/source-logs/YYYY-MM-DD.md (human-readable)
+                ↓
+        generate-md.ts
+                ↓
+        outputs/md/ai-industry-YYYY-MM-DD.md
+                ↓
+        generate-send-output.ts
+                ↓
+        outputs/email/ai-industry-YYYY-MM-DD.json
+                ↓
+        render:email + send:email
+                ↓
+        outputs/email/ai-industry-YYYY-MM-DD.eml (sent)
+```
+
+---
+
+## 14. Quality Controls
+
+### Content Pre-filtering (During Fetch)
+```typescript
+const spamPatterns = [
+  /Results for["'][^"']*["']/i,
+  /关键词[：:]?\s*[{\[][^}\]]+[}\]]/i,
+  /官网[：:]?\s*[{\[]?[^}\]]+[}\]]?/i,
+  /^\s*image\s*$/i,
+  /^\s*\.\w{2,4}\s*$/i,
+];
+```
+
+### Per-Category Limits
+```typescript
+// Maximum 10 items per category
+const limitedItems = items.slice(0, 10);
+```
+
+### Highlights Count
+```typescript
+// Email highlights: exactly 5 items
+.slice(0, 5)
+```
+
+---
+
+## 15. Chapter Numbering Fix History
+
+### Problem
+Duplicate chapter numbers in draft.md:
+- Two "## 九" sections
+- Two "## 十一" sections
+
+### Solution
+Renumbered to continuous sequence:
+```
+七、趋势判断
+八、机会与风险
+九、建议动作
+十、信息缺口
+十一、邮件发送摘要
+```
+
+---
+
+## 16. Testing & Validation Results
+
+### Current Status
+```bash
+$ npm run lint
+✅ TypeScript compilation successful (no errors)
+
+$ npm run validate:ai-industry-samples
+=== 校验示例文件 ===
+✓ 抓取示例校验通过
+✓ 发送示例校验通过
+
+=== 校验实际输出文件 ===
+✓ Fetch 输出校验通过
+✓ Email 输出校验通过
+```
+
+### Output Verification
+| Metric | Value |
+|--------|-------|
+| Total intelligence items | 115 |
+| After deduplication | ~55 |
+| Per-category limit | 10 |
+| High value (80+) | 19 |
+| Average score | 73 |
+| Email highlights | 5 |
+
+---
+
+## 17. Reusable Patterns
+
+### 1. Single Configuration Source
+```typescript
+// Centralize all magic values
+export const CONFIG = {
+  TIME_WINDOW_HOURS: 48,
+  MAX_ITEMS_PER_CATEGORY: 10,
+  EMAIL_HIGHLIGHTS_COUNT: 5,
+} as const;
+```
+
+### 2. Dynamic Content Generation
+```typescript
+// Generate from data, not hardcoded strings
+function generateSection(items: Item[]): string[] {
+  return items.map(item => formatItem(item));
+}
+```
+
+### 3. Validation at Multiple Levels
+- Schema validation (JSON)
+- Type validation (TypeScript)
+- Runtime validation (assertions)
+- Cross-reference validation (example vs output)
+
+### 4. Template Variable Substitution
+```typescript
+const prompt = template
+  .replace(/{{reportDate}}/g, reportDate)
+  .replace(/{{timeWindowHours}}/g, String(timeWindowHours));
+```
+
+---
+
+## 18. Questions for Future Development
+
+1. **Category Evolution**: Should "社区热点" be split into separate platforms (Reddit vs HN)?
+2. **Time Window**: Is 48h optimal, or should it vary by category?
+3. **Scoring Algorithm**: Should value scores be exposed to readers or kept internal?
+4. **Multi-language**: Should we generate English summaries for international stakeholders?
+5. **API Migration**: When to migrate from Tavily to direct search APIs?
+
+---
+
+## 19. Critical Implementation Notes
+
+### Never Hardcode
+- ❌ Email subjects
+- ❌ Time windows
+- ❌ Category names
+- ❌ File naming patterns
+
+### Always Use
+- ✅ `titles/ai-industry.ts` for titles/subjects
+- ✅ `{{variable}}` substitution in prompts
+- ✅ Dynamic generation from data
+- ✅ Single source of truth for all constants
+
+### Validate Everything
+- ✅ Example files (for documentation correctness)
+- ✅ Actual output files (for pipeline integrity)
+- ✅ Type consistency across the pipeline
+
+---
+
+*This memory file documents the architecture, design decisions, and implementation patterns of the AI Industry Intelligence System. Keep updated with each significant change.*

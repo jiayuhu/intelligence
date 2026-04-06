@@ -16,12 +16,9 @@ export interface AiIndustrySupportingSource {
 export type AiIndustryClassification =
   | "AI Agent"
   | "AI Coding"
-  | "头部 AI 企业"
-  | "AI 领袖人物"
   | "模型与基础设施"
-  | "开源生态"
   | "政策与监管"
-  | "待确认线索";
+  | "社区热点";
 
 export interface AiIndustryFetchItem {
   title: string;

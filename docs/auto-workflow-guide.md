@@ -50,10 +50,10 @@ npm run fetch:tasks
 📋 搜索任务清单
 ============================================================
 
-1. [P0] 头部 AI 企业
+1. [P0] AI 公司
    搜索词: OpenAI news April 2026
 
-2. [P0] 头部 AI 企业
+2. [P0] AI 公司
    搜索词: Anthropic Claude update April 2026
 
 3. [P0] AI Coding
@@ -130,7 +130,7 @@ npm run fetch:realtime
   保留 10 条唯一结果
 
 📊 分类统计:
-  - 头部 AI 企业: 4 条
+  - AI 公司: 4 条
   - AI Coding: 3 条
   - AI 领袖人物: 2 条
   - 模型与基础设施: 1 条
@@ -188,7 +188,7 @@ prompts/ai-industry/source-logs/
 |--------|------|
 | agent, openclaw, devin | AI Agent |
 | copilot, cursor, claude code, github | AI Coding |
-| openai, anthropic, funding, acquisition | 头部 AI 企业 |
+| openai, anthropic, funding, acquisition, xai, cohere, mistral | AI 公司 |
 | sam altman, dario, interview, ceo | AI 领袖人物 |
 | model, gpt, benchmark, inference | 模型与基础设施 |
 | open source, huggingface | 开源生态 |

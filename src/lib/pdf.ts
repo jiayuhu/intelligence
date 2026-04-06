@@ -47,7 +47,7 @@ function injectPdfStyles(html: string, pdfTitle: string): string {
 
       @page {
         size: A4;
-        margin: 14mm 12mm;
+        margin: 10mm 10mm;
       }
 
       @media print {
@@ -123,10 +123,10 @@ export async function renderMarkdownReportToPdf(args: {
       printBackground: true,
       preferCSSPageSize: true,
       margin: {
-        top: "14mm",
-        right: "12mm",
-        bottom: "14mm",
-        left: "12mm",
+        top: "10mm",
+        right: "10mm",
+        bottom: "10mm",
+        left: "10mm",
       },
     });
   } finally {

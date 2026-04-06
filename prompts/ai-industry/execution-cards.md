@@ -12,7 +12,7 @@
 - 重点抓：编程助手、IDE 集成、开发者工具链、使用场景
 - 结果要求：至少 1 条高可信结果，优先官方来源
 
-## 卡片 3：头部 AI 企业
+## 卡片 3：AI 公司
 - 优先来源：OpenAI、Anthropic、Google DeepMind、Meta、Microsoft、Amazon、NVIDIA
 - 关键词：`launch`、`update`、`benchmark`、`model update`
 - 重点抓：发布、组织、产品、模型、基础设施

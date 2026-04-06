@@ -211,13 +211,13 @@ export class SmartDraftEngine {
       }
     }
 
-    // 基于相关情报
+    // 基于社区讨论热度
     if (relatedItems.length > 0) {
-      const hasLeadershipSignal = relatedItems.some(i => 
-        i.classification === "AI 领袖人物"
+      const hasCommunitySignal = relatedItems.some(i => 
+        i.classification === "社区热点"
       );
-      if (hasLeadershipSignal) {
-        watchouts.push("关注是否出现更多面向 CEO/CFO/合规负责人的公开表态");
+      if (hasCommunitySignal) {
+        watchouts.push("关注社区讨论是否影响产品路线图");
       }
     }
 

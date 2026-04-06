@@ -100,7 +100,7 @@ const mockAIResult = {
       ],
     },
     {
-      category: "头部 AI 企业",
+      category: "模型与基础设施",
       summary: "OpenAI 模型路由调整",
       items: [
         {
@@ -108,7 +108,7 @@ const mockAIResult = {
           title: "OpenAI 将 GPT-5.3 设为默认模型",
           summary: "OpenAI 调整 ChatGPT 默认模型为 GPT-5.3",
           impact: "用户体验将由平台统一路由调度",
-          classification: "头部 AI 企业",
+          classification: "模型与基础设施",
           subject: "OpenAI",
           primary_source: {
             name: "OpenAI Help Center",
@@ -122,7 +122,7 @@ const mockAIResult = {
       ],
     },
     {
-      category: "AI 领袖人物",
+      category: "模型与基础设施",
       summary: "Sam Altman 谈企业 AI 采用",
       items: [
         {
@@ -130,7 +130,7 @@ const mockAIResult = {
           title: "Sam Altman 向 CEO 强调尽快推进 AI 采用",
           summary: "Altman 表示未来 6-12 个月是企业推进 AI 采用的关键窗口",
           impact: "企业管理层需要加快决策节奏",
-          classification: "AI 领袖人物",
+          classification: "模型与基础设施",
           subject: "Sam Altman",
           primary_source: {
             name: "Axios",
@@ -146,7 +146,7 @@ const mockAIResult = {
           title: "Sam Altman 谈政府合作与公众信任",
           summary: "Altman 承认低估了公众对 AI 与政府合作议题的敏感度",
           impact: "AI 公司对外表述转向更谨慎的治理语气",
-          classification: "AI 领袖人物",
+          classification: "模型与基础设施",
           subject: "Sam Altman",
           primary_source: {
             name: "Business Insider",

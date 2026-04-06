@@ -9,7 +9,7 @@
 | --- | --- | --- | --- |
 | AI Agent | OpenAI、Anthropic、Google DeepMind、GitHub、头部科技媒体 | `AI agent`、`agentic workflow`、`task execution`、`tool use` | 重点抓任务执行、工具调用、工作流编排和可商用案例 |
 | AI Coding | GitHub、Microsoft、OpenAI、Google、技术媒体 | `AI coding`、`coding assistant`、`IDE integration`、`code generation` | 重点抓编程助手、IDE 集成、开发者工具链和使用场景 |
-| 头部 AI 企业 | OpenAI、Anthropic、Google DeepMind、Meta、Microsoft、Amazon、NVIDIA | `launch`、`update`、`benchmark`、`model update` | 重点抓发布、组织、产品、模型和基础设施动作 |
+| AI 公司 | 头部：OpenAI、Anthropic、Google DeepMind、Meta、Microsoft、Amazon、NVIDIA<br>创新型：xAI、Cohere、Mistral、Perplexity、Cursor、Windsurf | `launch`、`update`、`benchmark`、`model update` | 重点抓发布、组织、产品、模型和基础设施动作，同时关注创新型公司的差异化策略 |
 | AI 领袖人物 | 官方博客、官方 X、播客、采访转写、会议演讲 | `CEO interview`、`founder`、`chief scientist`、`strategy shift` | 重点抓原话、观点变化、战略表态和组织信号 |
 | 模型与基础设施 | 官方技术博客、论文、NVIDIA、AWS、Google | `benchmark`、`inference cost`、`reasoning model`、`latency` | 重点抓推理能力、成本、上下文、吞吐和部署影响 |
 | 开源生态 | GitHub、Hugging Face、arXiv、Papers with Code | `release`、`repo`、`open source`、`SDK`、`API` | 重点抓新仓库、新模型、新 SDK 和开发者采用情况 |
@@ -26,7 +26,7 @@
 ### 基础来源扫描（原有）
 1. 先扫 `AI Agent`
 2. 再扫 `AI Coding`
-3. 再扫 `头部 AI 企业`
+3. 再扫 `AI 公司`（头部大厂 + 创新型公司）
 4. 再扫 `AI 领袖人物`
 5. 最后补 `模型与基础设施`、`开源生态`、`政策与监管`
 

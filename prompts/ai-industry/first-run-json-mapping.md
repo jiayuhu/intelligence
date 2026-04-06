@@ -27,7 +27,7 @@
 ## 字段整理规则
 - `summary`：一句话概括该组最重要变化
 - `classification`：与主题一致，但允许更细分
-- `related_focus`：可写成 `AI Agent / 头部 AI 企业` 这类组合
+- `related_focus`：可写成 `AI Agent / AI 公司` 这类组合
 - `source_tier`：按来源优先级映射为 `tier1`、`tier2`、`tier3`
 - `notes`：优先记录待确认点，而不是背景介绍
 
@@ -54,7 +54,7 @@
           "event_summary": "OpenAI 发布新的 Agent 工具，强调多步骤任务执行和工具调用。",
           "why_it_matters": "说明头部企业继续推进 Agent 从演示能力向执行能力演进。",
           "confidence": "high",
-          "related_focus": "AI Agent / 头部 AI 企业",
+          "related_focus": "AI Agent / AI 公司",
           "within_48h": true,
           "status": "confirmed",
           "notes": "后续需确认是否开放 API。",

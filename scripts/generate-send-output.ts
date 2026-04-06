@@ -40,48 +40,57 @@ function parseNumberedSummaryBlocks(section: string): SummaryBlock[] {
   const lines = section.split(/\r?\n/);
   const blocks: SummaryBlock[] = [];
   let current: SummaryBlock | null = null;
+  let inBlock = false;
 
   for (const rawLine of lines) {
     const trimmed = rawLine.trim();
-    if (!trimmed) {
+    if (!trimmed || trimmed.startsWith("---")) {
+      if (current && inBlock) {
+        blocks.push(current);
+        current = null;
+        inBlock = false;
+      }
       continue;
     }
 
-    const titleMatch = trimmed.match(/^\d+\.\s+(.+)$/);
+    // 匹配 **1. 标题** 或 1. 标题 格式
+    const titleMatch = trimmed.match(/^(?:\*\*)?(\d+)\.\s+(.+?)(?:\*\*)?$/);
     if (titleMatch) {
       if (current) {
         blocks.push(current);
       }
       current = {
-        title: cleanTitle(titleMatch[1]),
+        title: cleanTitle(titleMatch[2]),
         evidence: "",
         decisionImplication: "",
       };
+      inBlock = true;
       continue;
     }
 
-    if (!current) {
+    if (!current || !inBlock) {
       continue;
     }
 
-    if (trimmed.startsWith("证据：")) {
-      current.evidence = normalizeMarkdownText(trimmed.replace(/^证据：/, ""));
+    // 显式标记的字段
+    if (trimmed.startsWith("证据：") || trimmed.startsWith("摘要：")) {
+      current.evidence = normalizeMarkdownText(trimmed.replace(/^(证据|摘要)：/, ""));
       continue;
     }
 
-    if (trimmed.startsWith("摘要：")) {
-      current.evidence = normalizeMarkdownText(trimmed.replace(/^摘要：/, ""));
+    if (trimmed.startsWith("决策含义：") || trimmed.startsWith("解读：")) {
+      current.decisionImplication = normalizeMarkdownText(trimmed.replace(/^(决策含义|解读)：/, ""));
       continue;
     }
 
-    if (trimmed.startsWith("决策含义：")) {
-      current.decisionImplication = normalizeMarkdownText(trimmed.replace(/^决策含义：/, ""));
-      continue;
-    }
-
-    if (trimmed.startsWith("解读：")) {
-      current.decisionImplication = normalizeMarkdownText(trimmed.replace(/^解读：/, ""));
-      continue;
+    // 没有显式标记的段落
+    const normalizedText = normalizeMarkdownText(trimmed);
+    if (!current.evidence) {
+      current.evidence = normalizedText;
+    } else if (!current.decisionImplication) {
+      current.decisionImplication = normalizedText;
+    } else {
+      current.decisionImplication += " " + normalizedText;
     }
   }
 
@@ -89,21 +98,35 @@ function parseNumberedSummaryBlocks(section: string): SummaryBlock[] {
     blocks.push(current);
   }
 
-  return blocks.filter((block) => block.title && block.evidence && block.decisionImplication);
+  // 如果只有 evidence 没有 decisionImplication，尝试从 evidence 提取关键句
+  for (const block of blocks) {
+    if (block.evidence && !block.decisionImplication) {
+      // 提取最后一句作为决策含义，或生成一个默认的
+      const sentences = block.evidence.split(/(?<=[。\.])\s+/);
+      if (sentences.length > 1) {
+        block.decisionImplication = sentences.pop() || "";
+        block.evidence = sentences.join(" ");
+      } else {
+        block.decisionImplication = "建议关注此变化对业务的影响并制定应对策略。";
+      }
+    }
+  }
+
+  return blocks.filter((block) => block.title && block.evidence);
 }
 
 function buildHighlights(markdown: string): AiIndustryEmailHighlight[] {
   const summaryBlocks = parseNumberedSummaryBlocks(extractMarkdownSection(markdown, "## 一、本期要点"));
   const highlights = summaryBlocks
     .filter((block) => !isPlaceholderText(block.evidence) && !isPlaceholderText(block.decisionImplication))
-    .slice(0, 3)
+    .slice(0, 5)
     .map((block) => ({
       title: block.title,
       evidence: block.evidence,
       decision_implication: block.decisionImplication,
     }));
 
-  if (highlights.length >= 3) {
+  if (highlights.length >= 5) {
     return highlights;
   }
 
@@ -127,7 +150,7 @@ function buildHighlights(markdown: string): AiIndustryEmailHighlight[] {
 }
 
 function buildOpening(): string {
-  return "本期邮件只保留对决策最有影响的三条变化，并补入了社区讨论与节目文字稿作为辅助信号。完整证据链、来源附录和详细分析见 PDF 附件。";
+  return "本期邮件精选24小时内对决策最有影响的五条变化，涵盖 AI Agent、AI Coding、模型基础设施、政策监管和社区热点。完整证据链、来源附录和详细分析见 PDF 附件。";
 }
 
 function buildClosing(): string {

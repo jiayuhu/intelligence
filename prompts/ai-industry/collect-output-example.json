@@ -18,7 +18,7 @@
           "event_summary": "OpenAI 发布新的 Agent 工具，强调多步骤任务执行和工具调用。",
           "why_it_matters": "说明头部企业继续推进 Agent 从演示能力向执行能力演进。",
           "confidence": "high",
-          "related_focus": "AI Agent / 头部 AI 企业",
+          "related_focus": "AI Agent / AI 公司",
           "within_48h": true,
           "status": "confirmed",
           "notes": "后续需确认是否开放 API。",
@@ -63,8 +63,8 @@
       ]
     },
     {
-      "category": "头部 AI 企业",
-      "summary": "本组聚焦头部企业的发布、策略与基础设施动作。",
+      "category": "模型与基础设施",
+      "summary": "本组聚焦模型、推理、部署和基础设施变化。",
       "items": [
         {
           "title": "Google DeepMind 发布新基准结果",
@@ -84,23 +84,23 @@
       ]
     },
     {
-      "category": "AI 领袖人物",
-      "summary": "本组聚焦领袖人物的公开表态、观点变化和战略信号。",
+      "category": "社区热点",
+      "summary": "本组聚焦社区讨论、Reddit、Hacker News 等平台的热点话题。",
       "items": [
         {
-          "title": "某 CEO 在播客中强调 Agent 方向",
+          "title": "AI Agent 安全讨论升温",
           "published_at": "2026-04-04 19:20",
-          "source_name": "Podcast Transcript",
-          "source_url": "https://example.com/podcast-ai-ceo",
-          "subject": "某 AI 企业 CEO",
-          "classification": "AI 领袖人物",
-          "event_summary": "该 CEO 在访谈中强调 Agent 将成为下一阶段产品重点。",
-          "why_it_matters": "领袖表态通常会影响产品路线和组织投入。",
+          "source_name": "Reddit r/MachineLearning",
+          "source_url": "https://example.com/reddit-agent-safety",
+          "subject": "AI 社区",
+          "classification": "社区热点",
+          "event_summary": "Reddit 上关于 AI Agent 安全性和可控性的讨论热度上升。",
+          "why_it_matters": "社区关注焦点可能预示产品发展方向。",
           "confidence": "medium",
-          "related_focus": "AI 领袖人物 / AI Agent",
+          "related_focus": "AI Agent / 社区",
           "within_48h": true,
           "status": "tentative",
-          "notes": "需用原始转写交叉确认。",
+          "notes": "需持续观察讨论趋势。",
           "source_tier": "tier2"
         }
       ]

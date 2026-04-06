@@ -31,7 +31,9 @@
 - `site:techcrunch.com AI coding`
 - `site:reuters.com AI coding`
 
-## 头部 AI 企业
+## AI 公司
+
+### 头部公司
 - `site:openai.com news`
 - `site:anthropic.com news`
 - `site:deepmind.google blog`
@@ -41,6 +43,13 @@
 - `site:aws.amazon.com AI`
 - `site:nvidia.com AI`
 - `site:meta.com AI`
+
+### 创新型公司
+- `site:x.ai AI OR Grok`
+- `site:cohere.com model OR API OR release`
+- `site:perplexity.ai search OR AI OR update`
+- `site:cursor.com changelog OR feature OR agent`
+- `site:mistral.ai model OR release OR Pixtral`
 
 ## AI 领袖人物
 - `site:x.com OpenAI CEO AI`

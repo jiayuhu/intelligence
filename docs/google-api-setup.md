@@ -93,7 +93,7 @@ const SEARCH_TASKS = [
     id: 1, 
     query: "site:openai.com OR site:anthropic.com news", // 限定域名
     priority: "P0", 
-    category: "头部 AI 企业",
+    category: "AI 公司",
     company: "OpenAI" 
   },
   // ...

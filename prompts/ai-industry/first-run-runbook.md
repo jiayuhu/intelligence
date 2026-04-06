@@ -38,7 +38,7 @@
 ## 关键约束
 - 所有信息源必须落在报告生成时间前 48 小时内
 - `AI Agent` 和 `AI Coding` 是长期关注重点
-- 头部 AI 企业和 AI 领袖人物优先于尾部信息
+- AI 公司和 AI 领袖人物优先于泛行业信息（同时关注创新型公司）
 - 无法确认时间或来源的信息必须标注为“待确认”
 - HTML 必须兼容 Web、Outlook、阿里邮箱和网易邮箱
 - 发送前先确认 `.env.local` 已写入正确的 AgentMail API Key、Inbox、收件人和发件人；若不使用 AgentMail，再补 SMTP 配置
