@@ -32,6 +32,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
         
+      - name: Install tsx
+        run: npm install -g tsx
+        
       - name: Fetch intelligence
         env:
           GOOGLE_SEARCH_API_KEY: ${{ secrets.GOOGLE_SEARCH_API_KEY }}
